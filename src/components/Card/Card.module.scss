@@ -1,0 +1,73 @@
+
+
+  .card {
+    border: 1px solid #F2C1C1;
+    padding: 20px;
+    width: 200px;
+    height: auto;
+    border-radius: 30px;
+    margin: 0px 10px 0px 10px;
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+    font-family: 'Inter', system-ui;
+    margin: 10px 10px;
+  
+
+    &:hover {
+      box-shadow: 0 14px 25px rgba(59, 135, 61, 0.364);
+      transform: translateY(-5px);
+    }
+
+    .favorite {
+      cursor: pointer;
+      color: #ccc;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #F2C1C1;
+      }
+
+      svg.heart {
+        display: block;
+        width: 24px;
+        height: 24px;
+      }
+    }
+  
+
+    span {
+      font-size: 13px;
+      opacity: 0.5;
+      text-transform: uppercase;
+    
+  }
+
+  b {
+    font-size: 15px;
+    color:#033017;
+  }
+
+  img {
+    display: flex;
+  }
+
+  h5 {
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    margin: 0;
+    padding: 5px 5px 10px 5px;
+  }
+  ._blok {
+  display: flex;
+  justify-content: space-between;
+    img {
+      cursor: pointer;
+    }
+  }
+
+  .__text {
+  display: flex;
+  flex-direction: column;
+  }
+
+}

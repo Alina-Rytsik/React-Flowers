@@ -3,25 +3,51 @@ function Drawer() {
     <div className='overlay' style={{ display: 'none' }}>
       <div className='drawer'>
         <h2>
-          Корзина <img className='imgCartOff' src='img/cart-off.png' alt='cart off' />
+          Корзина
+          <div className='imgCartOff' aria-label='image Cart Off' role='button'>
+            <svg
+              width='30'
+              height='30'
+              viewBox='0 0 24 24'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+              aria-hidden='true'
+              focusable='false'
+            >
+              <path
+                d='M18 6L6 18'
+                stroke='currentColor'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+              <path
+                d='M6 6L18 18'
+                stroke='currentColor'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+          </div>
         </h2>
 
         <div className='items'>
           <div className='cartItem'>
-            <img width={70} height={70} src='img/rose/red rose.jpg' alt='Rose red' />
+            <img width={90} height={90} src='/img/catalog/muse.png' alt='Muse' />
             <div>
-              <p>Роза “КРАСНАЯ” цветок срезанный (1шт.)</p>
-              <b>1,99 руб.</b>
+              <p>Букет "МУЗА</p>
+              <b>156,5 руб.</b>
             </div>
 
             <img className='imgCross' src='img/cross-off.png' alt='Cross off' />
           </div>
 
           <div className='cartItem'>
-            <img width={70} height={70} src='img/rose/red rose.jpg' alt='Rose red' />
+            <img width={90} height={90} src='/img/catalog/muse.png' alt='Muse' />
             <div>
-              <p>Роза “КРАСНАЯ” цветок срезанный (1шт.)</p>
-              <b>1,99 руб.</b>
+              <p>Букет "МУЗА</p>
+              <b>156,5 руб.</b>
             </div>
 
             <img className='imgCross' src='img/cross-off.png' alt='Cross off' />
