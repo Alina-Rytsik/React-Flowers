@@ -1,40 +1,14 @@
-function Drawer() {
+function Drawer(props) {
   return (
-    <div className='overlay' style={{ display: 'none' }}>
+    <div className='overlay'>
       <div className='drawer'>
         <h2>
-          Корзина
-          <div className='imgCartOff' aria-label='image Cart Off' role='button'>
-            <svg
-              width='30'
-              height='30'
-              viewBox='0 0 24 24'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-              aria-hidden='true'
-              focusable='false'
-            >
-              <path
-                d='M18 6L6 18'
-                stroke='currentColor'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-              <path
-                d='M6 6L18 18'
-                stroke='currentColor'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-          </div>
+          Корзина <img onClick={props.onClose} src='/img/closeCard.png' alt='Close' />
         </h2>
 
         <div className='items'>
           <div className='cartItem'>
-            <img width={90} height={90} src='/img/catalog/muse.png' alt='Muse' />
+            <img width={80} height={80} src='/img/catalog/muse.png' alt='Muse' />
             <div>
               <p>Букет "МУЗА</p>
               <b>156,5 руб.</b>
@@ -44,7 +18,7 @@ function Drawer() {
           </div>
 
           <div className='cartItem'>
-            <img width={90} height={90} src='/img/catalog/muse.png' alt='Muse' />
+            <img width={80} height={80} src='/img/catalog/muse.png' alt='Muse' />
             <div>
               <p>Букет "МУЗА</p>
               <b>156,5 руб.</b>
