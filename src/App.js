@@ -3,26 +3,26 @@ import Card from './components/Card';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
 
-const arr = [
+/*const arr = [
+  {
+    title: 'Букет "РОЗАРИУМ"',
+    price: 110.5,
+    imageUrl: '/img/catalog/rosarium.png',
+  },
+  {
+    title: 'Букет "СНОВИДЕНИЕ"',
+    price: 172.0,
+    imageUrl: '/img/catalog/dreaming.png',
+  },
+  {
+    title: 'Букет "ЧАЕПИТИЕ"',
+    price: 100.7,
+    imageUrl: '/img/catalog/tea-party.png',
+  },
   {
     title: 'Букет "МУЗА"',
     price: 156.5,
     imageUrl: '/img/catalog/muse.png',
-  },
-  {
-    title: 'Букет "СНОВИДЕНИЕ"',
-    price: 272.9,
-    imageUrl: '/img/catalog/dreaming.png',
-  },
-  {
-    title: 'Букет "ДЖОРДЖИЯ"',
-    price: 80.0,
-    imageUrl: '/img/catalog/georgia.png',
-  },
-  {
-    title: 'Букет "ВОСХИЩЕНИЕ"',
-    price: 116.5,
-    imageUrl: '/img/catalog/admiration.png',
   },
   {
     title: 'Букет "СИМИНА"',
@@ -34,14 +34,43 @@ const arr = [
     price: 80.0,
     imageUrl: '/img/catalog/morning.png',
   },
-];
+  {
+    title: 'Букет "ДЖОРДЖИЯ"',
+    price: 80.0,
+    imageUrl: '/img/catalog/georgia.png',
+  },
+  {
+    title: 'Букет "ВОСХИЩЕНИЕ"',
+    price: 116.5,
+    imageUrl: '/img/catalog/admiration.png',
+  },
+];*/
+//Данные карточек букетов на бэке items (function App => items)
 
 function App() {
+  const [items, setItems] = React.useState([]);
+  const [cartItems, setCartItems] = React.useState([]); //корзина пуста, данные с mockapi.io
   const [cartOpened, setCartOpened] = React.useState(false);
+
+  React.useEffect(() => {
+    fetch('https://68d45560214be68f8c690986.mockapi.io/items')
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        setItems(json);
+      });
+  }, []);
+  //Вытягивает данные по карточкам с mockapi.io. Без повторений и нагрозки для сервиса.
+
+  const onAddToCar = (obj) => {
+    setCartItems((prev) => [...prev, obj]);
+  };
+  console.log(cartItems);
 
   return (
     <div className='wrapper'>
-      {cartOpened ? <Drawer onClose={() => setCartOpened(false)} /> : null}
+      {cartOpened ? <Drawer items={cartItems} onClose={() => setCartOpened(false)} /> : null}
       <Header onClickCart={() => setCartOpened(true)} />
 
       <div className='content'>
@@ -54,13 +83,13 @@ function App() {
       </div>
 
       <div className='catalog'>
-        {arr.map((obj) => (
+        {items.map((item) => (
           <Card
-            title={obj.title}
-            price={obj.price}
-            imageUrl={obj.imageUrl}
+            title={item.title}
+            price={item.price}
+            imageUrl={item.imageUrl}
             onFavorite={() => console.log('Добавили в закладки')}
-            onPlus={() => console.log('Нажали плюс')}
+            onPlus={(obj) => onAddToCar(obj)} //'Нажали плюс'
           />
         ))}
       </div>

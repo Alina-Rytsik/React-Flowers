@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from './Card.module.scss';
 
-function Card(props) {
+function Card({ title, imageUrl, price, onFavorite, onPlus }) {
   /*const onButton = () => {
     alert(props.title);
   };*/
   const [isAdded, setIsAdded] = React.useState(false);
 
   const onClickPlus = () => {
+    onPlus({ title, imageUrl, price });
     setIsAdded(!isAdded); //при клике будетсмена с + на "галочку". И на оборот.
   };
 
@@ -18,7 +19,7 @@ function Card(props) {
 
   return (
     <div className={styles.card}>
-      <div className={styles.favorite} onClick={props.onFavorite} aria-label='Like' role='button'>
+      <div className={styles.favorite} onClick={onFavorite} aria-label='Like' role='button'>
         <svg
           width='24'
           height='24'
@@ -37,13 +38,13 @@ function Card(props) {
         </svg>
       </div>
 
-      <img width={160} height={180} src={props.imageUrl} alt='Rose red' />
-      <h5>{props.title}</h5>
+      <img width={160} height={180} src={imageUrl} alt='Rose red' />
+      <h5>{title}</h5>
 
       <div className={styles._blok}>
         <div className={styles.__text}>
           <span>Цена: </span>
-          <b>{props.price} руб.</b>
+          <b>{price} руб.</b>
         </div>
 
         <img

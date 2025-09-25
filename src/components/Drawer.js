@@ -1,31 +1,30 @@
-function Drawer(props) {
+function Drawer({ onClose, items = [] }) {
   return (
     <div className='overlay'>
       <div className='drawer'>
         <h2>
-          Корзина <img onClick={props.onClose} src='/img/closeCard.png' alt='Close' />
+          Корзина <img onClick={onClose} src='/img/closeCard.png' alt='Close' />
         </h2>
 
         <div className='items'>
-          <div className='cartItem'>
-            <img width={80} height={80} src='/img/catalog/muse.png' alt='Muse' />
-            <div>
-              <p>Букет "МУЗА</p>
-              <b>156,5 руб.</b>
+          {items.map((obj) => (
+            <div className='cartItem'>
+              <div
+                className='img'
+                style={{
+                  backgroundImage: `url(${obj.imageUrl})`,
+                  backgroundSize: 'cover',
+                }}
+              ></div>
+
+              <div>
+                <p>{obj.title}</p>
+                <b>{obj.price} руб.</b>
+              </div>
+
+              <img className='imgCross' src='img/cross-off.png' alt='Cross off' />
             </div>
-
-            <img className='imgCross' src='img/cross-off.png' alt='Cross off' />
-          </div>
-
-          <div className='cartItem'>
-            <img width={80} height={80} src='/img/catalog/muse.png' alt='Muse' />
-            <div>
-              <p>Букет "МУЗА</p>
-              <b>156,5 руб.</b>
-            </div>
-
-            <img className='imgCross' src='img/cross-off.png' alt='Cross off' />
-          </div>
+          ))}
         </div>
 
         <div className='cartTotalBlock'>
