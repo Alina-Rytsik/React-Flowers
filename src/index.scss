@@ -110,7 +110,6 @@ header {
   align-items: center;
   padding: 40px;
   border-bottom: 2px solid #F2C1C1;
-  font-family: Inder;
 
   .headerLeft {
     display: flex;
@@ -252,59 +251,16 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 50px 20px;
+  padding: 40px 20px;
   font-family: Inder;
   margin: 10px 0px 0px 0px;
 }
 
-.noСhoice {
-  height: auto;
-  padding: 50px 20px;
-  background-color: #B6BBAF;
-
-  h2 {
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.5em;
-    color: #000000;
-    font-size: 22px;
-    margin-bottom: 20px;
-  }
-  p {
-    text-align: center;
-    font-size: 16px;
-    color:#000000;
-    margin-bottom: 20px;
-  }
-  
-  .btnCall {
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    margin: 0 auto;
-    width: 300px;
-    background: lighten(#F2C1C1, 5%);
-    border: 1px solid #ffffff;
-    text-shadow: 0.1em 0.1em 0.1em #faa4a4;
-    border-radius: 20px;
-    text-align: center;
-    color: #ffffff;
-    padding: 15px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s ease-in-out;
-
-      &:hover {
-        background: #F2C1C1;
-        text-shadow: 0.1em 0.1em 0.1em #faa4a4;
-        img {
-          transform: translateX(10px);
-        }
-      }
-      &:active {
-        background: lighten(#F2C1C1, 5%);
-      }
-  }
-
+.line{
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  height: 2px;
+  width: 800px;
+  background: #033017;
 }

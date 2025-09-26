@@ -2,6 +2,8 @@ import React from 'react';
 import Card from './components/Card';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
+import Call from './components/Call/Сall.js';
+import Footer from './components/Footer/Footer.js';
 
 /*const arr = [
   {
@@ -72,7 +74,6 @@ function App() {
     <div className='wrapper'>
       {cartOpened ? <Drawer items={cartItems} onClose={() => setCartOpened(false)} /> : null}
       <Header onClickCart={() => setCartOpened(true)} />
-
       <div className='content'>
         <h1>Каталог</h1>
 
@@ -81,8 +82,8 @@ function App() {
           <input placeholder='Поиск ...' />
         </div>
       </div>
-
       <div className='catalog'>
+        <div className='line'></div>
         {items.map((item) => (
           <Card
             title={item.title}
@@ -93,18 +94,8 @@ function App() {
           />
         ))}
       </div>
-
-      <div className='noСhoice'>
-        <div className='line'></div>
-        <h2>Не смогли выбрать?</h2>
-        <p>
-          Не проблема! Мы подберем букет по вашему индивидуальному запросу. <br />
-          Закажите звонок и мы перезвоним вам в течение 5 минут.
-        </p>
-        <button className='btnCall' aria-label='Заказать звонок'>
-          Заказать звонок
-        </button>
-      </div>
+      <Call />
+      <Footer />
     </div>
   );
 }
