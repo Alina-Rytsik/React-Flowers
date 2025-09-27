@@ -2,10 +2,9 @@ function Header(props) {
   return (
     <header>
       <div className='headerLeft'>
-        <img width={50} height={50} src='img/logo-flowers.png' />
+        <img width={40} height={40} src='img/logo-flowers.png' />
         <div className='headerInfo'>
-          <h3>React Flowers</h3>
-          <p>Лучшие цветы в городе!</p>
+          <h3>LF</h3>
         </div>
       </div>
 

@@ -2,6 +2,15 @@
   height: auto;
   padding: 50px 20px;
   background-color: #B6BBAF;
+  
+  .line{
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  height: 2px;
+  width: 800px;
+  background: #033017;
+}
 
   h2 {
     text-align: center;

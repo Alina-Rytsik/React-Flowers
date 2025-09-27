@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Drawer from './components/Drawer';
 import Call from './components/Call/Сall.js';
 import Footer from './components/Footer/Footer.js';
+import Menu from './components/Call/Menu.js';
 
 /*const arr = [
   {
@@ -52,6 +53,7 @@ import Footer from './components/Footer/Footer.js';
 function App() {
   const [items, setItems] = React.useState([]);
   const [cartItems, setCartItems] = React.useState([]); //корзина пуста, данные с mockapi.io
+  const [searchValue, setSearchValue] = React.useState('');
   const [cartOpened, setCartOpened] = React.useState(false);
 
   React.useEffect(() => {
@@ -68,24 +70,35 @@ function App() {
   const onAddToCar = (obj) => {
     setCartItems((prev) => [...prev, obj]);
   };
-  console.log(cartItems);
+
+  const onChangeSearchInput = (event) => {
+    console.log(event.target.value);
+    setSearchValue();
+  };
 
   return (
     <div className='wrapper'>
       {cartOpened ? <Drawer items={cartItems} onClose={() => setCartOpened(false)} /> : null}
       <Header onClickCart={() => setCartOpened(true)} />
-      <div className='content'>
-        <h1>Каталог</h1>
 
+      <Menu />
+
+      <div className='content'>
         <div className='search-blok'>
           <img src='img/search.png' alt='Search' />
-          <input placeholder='Поиск ...' />
+          <input onChange={onChangeSearchInput} placeholder='Поиск ...' />
         </div>
       </div>
+
       <div className='catalog'>
-        <div className='line'></div>
-        {items.map((item) => (
+        <h2>Каталог</h2>
+
+        <div className='lineBlock'>
+          <div className='line'></div>
+        </div>
+        {items.map((item, index) => (
           <Card
+            key={index}
             title={item.title}
             price={item.price}
             imageUrl={item.imageUrl}

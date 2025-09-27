@@ -15,7 +15,7 @@ body {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
   border-radius: 20px;
   max-width: 1080px;
-  margin: 50px auto;
+  margin: 20px auto;
 
 
   .overlay {
@@ -108,37 +108,29 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40px;
-  border-bottom: 2px solid #F2C1C1;
+  padding: 10px 40px 10px 40px;
 
   .headerLeft {
     display: flex;
     align-items: center;
+    cursor: pointer;    
   }
   .headerRight {
     .basket, span {
       cursor: pointer;
     }
   }
-  
-  img {
-    margin-right: 15px;
-  }
-   span {
+  span {
     position: absolute;
     padding-top: 5px;
-  }
-  h3, 
-  p {
-    margin: 0;
+    margin-left: 10px;
   }
   h3 {
+    margin: 0;
     text-transform: uppercase;
-    color:#046d56;
-    
-  }
-  p{
-     color:#033017;
+    text-align: center;
+    font-size: 30px;
+    color: #033017;
   }
   a {
     color: inherit;
@@ -154,15 +146,14 @@ header {
   margin-left: 50px;
   margin-right: 50px;
   }
-  
+
 }
 
 
 .content {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 40px;
+  flex-direction: row-reverse;
+  padding: 40px 40px 10px 40px;
   font-family: Inder;
   
   .search-blok {
@@ -181,12 +172,6 @@ header {
       outline: none; /* Убираем стандартную */
       background-color:#F6F6F6;
     }
-  }
-
-  h1 {
-    margin: 0;
-    text-transform: uppercase;
-    color: #033017;
   }
 }
 
@@ -253,14 +238,62 @@ header {
   justify-content: center;
   padding: 40px 20px;
   font-family: Inder;
-  margin: 10px 0px 0px 0px;
+
+  h2{
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-size: 25px;
+    margin: 0;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    color: #033017;
+    letter-spacing: 0.2em;
+    padding-left: 40px;
+  }
 }
 
-.line{
+.lineBlock{
+  width: 100%;
+
+  .line{
   display: flex;
   margin: 0 auto;
   margin-bottom: 40px;
   height: 2px;
   width: 800px;
   background: #033017;
+  }
+}
+
+
+.menuBlock{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  color: #033017;
+  margin: 0; 
+  border-top: 5px solid #033017;
+  border-bottom: 5px solid #033017;
+
+  h2{
+    font-size: 16px;
+    padding: 0px 20px;
+    letter-spacing: 0.1em;
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+
+    &:hover{
+      transition: all 0.2s linear;
+      box-shadow: 0 14px 25px rgba(59, 135, 61, 0.364);
+      transform: translateY(2px);
+    }
+  }
+  h3{
+    font-size: 25px;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    color: #000000;
+    padding: 0px 100px;
+  }  
 }
