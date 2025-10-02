@@ -1,10 +1,11 @@
 import React from 'react';
+import axios from 'axios';
 import Card from './components/Card';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
 import Call from './components/Call/Сall.js';
 import Footer from './components/Footer/Footer.js';
-import Menu from './components/Call/Menu.js';
+import Menu from './Menu.js';
 
 /*const arr = [
   {
@@ -55,26 +56,49 @@ function App() {
   const [cartItems, setCartItems] = React.useState([]); //корзина пуста, данные с mockapi.io
   const [searchValue, setSearchValue] = React.useState('');
   const [cartOpened, setCartOpened] = React.useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = React.useState(false); // Новое: для показа dropdown
 
   React.useEffect(() => {
-    fetch('https://68d45560214be68f8c690986.mockapi.io/items')
-      .then((res) => {
-        return res.json();
-      })
+    /*fetch('https://68d45560214be68f8c690986.mockapi.io/items')
+      .then((res) => res.json())
       .then((json) => {
         setItems(json);
-      });
+      });*/
+    axios.get('https://68d45560214be68f8c690986.mockapi.io/items').then((res) => {
+      setItems(res.data);
+    });
   }, []);
-  //Вытягивает данные по карточкам с mockapi.io. Без повторений и нагрозки для сервиса.
 
-  const onAddToCar = (obj) => {
+  const onAddToCart = (obj) => {
+    axios.post('https://68d45560214be68f8c690986.mockapi.io/cart', obj);
     setCartItems((prev) => [...prev, obj]);
   };
 
   const onChangeSearchInput = (event) => {
-    console.log(event.target.value);
-    setSearchValue();
+    const value = event.target.value;
+    setSearchValue(value);
+    setIsDropdownOpen(true); // Показываем dropdown при вводе
   };
+
+  const onSelectSuggestion = (title) => {
+    setSearchValue(title); // Устанавливаем выбранное название
+    setIsDropdownOpen(false); // Скрываем dropdown
+  };
+
+  const onBlurInput = () => {
+    // Скрываем dropdown при потере фокуса (с небольшой задержкой, чтобы клик по варианту сработал)
+    setTimeout(() => setIsDropdownOpen(false), 150);
+  };
+
+  // Фильтруем товары по searchValue (если пусто — показываем все)
+  const filteredItems = items.filter((item) =>
+    item.title.toLowerCase().includes(searchValue.toLowerCase()),
+  );
+
+  // Получаем уникальные названия для dropdown (фильтруем по вводу)
+  const suggestions = [...new Set(items.map((item) => item.title))] // Уникальные title
+    .filter((title) => title.toLowerCase().includes(searchValue.toLowerCase())) // Фильтр по вводу
+    .slice(0, 5); // Ограничиваем до 5 вариантов для удобства
 
   return (
     <div className='wrapper'>
@@ -86,26 +110,57 @@ function App() {
       <div className='content'>
         <div className='search-blok'>
           <img src='img/search.png' alt='Search' />
-          <input onChange={onChangeSearchInput} placeholder='Поиск ...' />
+          <input
+            onChange={onChangeSearchInput}
+            onFocus={() => setIsDropdownOpen(true)} // Показываем dropdown при фокусе
+            onBlur={onBlurInput} // Скрываем при потере фокуса
+            value={searchValue}
+            placeholder='Поиск ...'
+          />
+          {searchValue && (
+            <img
+              onClick={() => setSearchValue('')}
+              className='clear'
+              src='/img/closeCard.png'
+              alt='Clear'
+            />
+          )}
+          {/* Dropdown меню с подсказками */}
+          {isDropdownOpen && suggestions.length > 0 && (
+            <ul className='dropdown-menu'>
+              {' '}
+              {/* Стили добавьте ниже */}
+              {suggestions.map((title, index) => (
+                <li
+                  key={index}
+                  onMouseDown={() => onSelectSuggestion(title)} // Используем onMouseDown, чтобы сработало до onBlur
+                >
+                  {title}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
 
       <div className='catalog'>
         <h2>Каталог</h2>
-
         <div className='lineBlock'>
           <div className='line'></div>
         </div>
-        {items.map((item, index) => (
+        {filteredItems.map((item, index) => (
           <Card
-            key={index}
+            key={index} // Лучше использовать item.id, если есть в API
             title={item.title}
             price={item.price}
             imageUrl={item.imageUrl}
             onFavorite={() => console.log('Добавили в закладки')}
-            onPlus={(obj) => onAddToCar(obj)} //'Нажали плюс'
+            onPlus={(obj) => onAddToCart(obj)}
           />
         ))}
+        {filteredItems.length === 0 && searchValue && (
+          <p>Ничего не найдено по запросу "{searchValue}"</p>
+        )}
       </div>
       <Call />
       <Footer />

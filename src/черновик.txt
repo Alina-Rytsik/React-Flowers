@@ -1,0 +1,124 @@
+import React from 'react';
+import Card from './components/Card';
+import Header from './components/Header';
+import Drawer from './components/Drawer';
+import Call from './components/Call/Сall.js';
+import Footer from './components/Footer/Footer.js';
+import Menu from './Menu.js';
+
+/*const arr = [
+  {
+    title: 'Букет "РОЗАРИУМ"',
+    price: 110.5,
+    imageUrl: '/img/catalog/rosarium.png',
+  },
+  {
+    title: 'Букет "СНОВИДЕНИЕ"',
+    price: 172.0,
+    imageUrl: '/img/catalog/dreaming.png',
+  },
+  {
+    title: 'Букет "ЧАЕПИТИЕ"',
+    price: 100.7,
+    imageUrl: '/img/catalog/tea-party.png',
+  },
+  {
+    title: 'Букет "МУЗА"',
+    price: 156.5,
+    imageUrl: '/img/catalog/muse.png',
+  },
+  {
+    title: 'Букет "СИМИНА"',
+    price: 87.3,
+    imageUrl: '/img/catalog/simone.png',
+  },
+  {
+    title: 'Букет "УТРО"',
+    price: 80.0,
+    imageUrl: '/img/catalog/morning.png',
+  },
+  {
+    title: 'Букет "ДЖОРДЖИЯ"',
+    price: 80.0,
+    imageUrl: '/img/catalog/georgia.png',
+  },
+  {
+    title: 'Букет "ВОСХИЩЕНИЕ"',
+    price: 116.5,
+    imageUrl: '/img/catalog/admiration.png',
+  },
+];*/
+//Данные карточек букетов на бэке items (function App => items)
+
+function App() {
+  const [items, setItems] = React.useState([]);
+  const [cartItems, setCartItems] = React.useState([]); //корзина пуста, данные с mockapi.io
+  const [searchValue, setSearchValue] = React.useState('');
+  const [cartOpened, setCartOpened] = React.useState(false);
+
+  React.useEffect(() => {
+    fetch('https://68d45560214be68f8c690986.mockapi.io/items')
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        setItems(json);
+      });
+  }, []);
+  //Вытягивает данные по карточкам с mockapi.io. Без повторений и нагрозки для сервиса.
+
+  const onAddToCar = (obj) => {
+    setCartItems((prev) => [...prev, obj]);
+  };
+
+  const onChangeSearchInput = (event) => {
+    console.log(event.target.value);
+    setSearchValue();
+  };
+
+  return (
+    <div className='wrapper'>
+      {cartOpened ? <Drawer items={cartItems} onClose={() => setCartOpened(false)} /> : null}
+      <Header onClickCart={() => setCartOpened(true)} />
+
+      <Menu />
+
+      <div className='content'>
+        <div className='search-blok'>
+          <img src='img/search.png' alt='Search' />
+          <input onChange={onChangeSearchInput} value={searchValue} placeholder='Поиск ...' />
+          {searchValue && (
+            <img
+              onClick={() => setSearchValue('')}
+              className='clear'
+              src='/img/closeCard.png'
+              alt='clear Close'
+            />
+          )}
+        </div>
+      </div>
+
+      <div className='catalog'>
+        <h2>Каталог</h2>
+
+        <div className='lineBlock'>
+          <div className='line'></div>
+        </div>
+        {items.map((item, index) => (
+          <Card
+            key={index}
+            title={item.title}
+            price={item.price}
+            imageUrl={item.imageUrl}
+            onFavorite={() => console.log('Добавили в закладки')}
+            onPlus={(obj) => onAddToCar(obj)} //'Нажали плюс'
+          />
+        ))}
+      </div>
+      <Call />
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
