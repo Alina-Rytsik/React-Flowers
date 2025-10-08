@@ -9,7 +9,6 @@
     margin: 0px 10px 0px 10px;
     transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
     font-family: 'Inter', system-ui;
-    margin: 10px 10px;
   
 
     &:hover {
@@ -31,6 +30,10 @@
         width: 24px;
         height: 24px;
       }
+      
+      &.favorited {
+      color: #F2C1C1;
+    }
     }
   
 

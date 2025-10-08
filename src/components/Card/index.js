@@ -6,10 +6,15 @@ function Card({ title, imageUrl, price, onFavorite, onPlus }) {
     alert(props.title);
   };*/
   const [isAdded, setIsAdded] = React.useState(false);
+  const [isFavorite, setIsFavorite] = React.useState(false);
 
   const onClickPlus = () => {
     onPlus({ title, imageUrl, price });
     setIsAdded(!isAdded); //при клике будетсмена с + на "галочку". И на оборот.
+  };
+
+  const onClickFavorite = () => {
+    setIsFavorite(!isFavorite); //при клике будетсмена с серого сердца на розовое. И на оборот.
   };
 
   /*React.useEffect(() => {
@@ -19,15 +24,13 @@ function Card({ title, imageUrl, price, onFavorite, onPlus }) {
 
   return (
     <div className={styles.card}>
-      <div className={styles.favorite} onClick={onFavorite} aria-label='Like' role='button'>
-        <svg
-          width='24'
-          height='24'
-          viewBox='0 0 24 24'
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'
-          className={styles.heart}
-        >
+      <div
+        className={`${styles.favorite} ${isFavorite ? styles.favorited : ''}`}
+        onClick={onClickFavorite}
+        aria-label='Like'
+        role='button'
+      >
+        <svg className={styles.heart} viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
           <path
             d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
          4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 

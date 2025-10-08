@@ -59,19 +59,36 @@ function App() {
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false); // Новое: для показа dropdown
 
   React.useEffect(() => {
-    /*fetch('https://68d45560214be68f8c690986.mockapi.io/items')
-      .then((res) => res.json())
-      .then((json) => {
-        setItems(json);
-      });*/
     axios.get('https://68d45560214be68f8c690986.mockapi.io/items').then((res) => {
       setItems(res.data);
+    });
+    axios.get('https://68d45560214be68f8c690986.mockapi.io/cart').then((res) => {
+      setCartItems(res.data);
     });
   }, []);
 
   const onAddToCart = (obj) => {
-    axios.post('https://68d45560214be68f8c690986.mockapi.io/cart', obj);
-    setCartItems((prev) => [...prev, obj]);
+    axios
+      .post('https://68d45560214be68f8c690986.mockapi.io/cart', obj)
+      .then((res) => {
+        setCartItems((prev) => [...prev, res.data]); // Используем res.data вместо obj
+      })
+      .catch((error) => {
+        console.error('Ошибка добавления:', error);
+      });
+  };
+
+  const onRemoveItem = (id) => {
+    axios
+      .delete(`https://68d45560214be68f8c690986.mockapi.io/cart/${id}`)
+      .then(() => {
+        // После успешного удаления обновляем локальное состояние
+        setCartItems((prev) => prev.filter((item) => item.id !== id));
+      })
+      .catch((error) => {
+        console.error('Ошибка удаления:', error);
+        // Здесь можно добавить обработку ошибки, например, показать уведомление пользователю
+      });
   };
 
   const onChangeSearchInput = (event) => {
@@ -102,7 +119,9 @@ function App() {
 
   return (
     <div className='wrapper'>
-      {cartOpened ? <Drawer items={cartItems} onClose={() => setCartOpened(false)} /> : null}
+      {cartOpened ? (
+        <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />
+      ) : null}
       <Header onClickCart={() => setCartOpened(true)} />
 
       <Menu />
@@ -150,7 +169,7 @@ function App() {
         </div>
         {filteredItems.map((item, index) => (
           <Card
-            key={index} // Лучше использовать item.id, если есть в API
+            key={item.id} // Лучше использовать item.id
             title={item.title}
             price={item.price}
             imageUrl={item.imageUrl}

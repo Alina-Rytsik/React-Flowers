@@ -19,7 +19,7 @@ body {
 
 
   .overlay {
-    position: absolute;
+    position: fixed; 
     left: 0;
     right: 0;
     top: 0;
@@ -44,7 +44,7 @@ body {
         justify-content: space-between;
         margin: 0;
         font-size: 24px;
-        margin-bottom: 30px;
+        height: 10%;
         color:#033017;
         
         img {
@@ -52,14 +52,45 @@ body {
         width: 24px;
         height: 24px;
         }
-      }   
+      }
+
+      .allItems {
+        height: 70%
+      }
+      
+      .cartEmpty {
+        display: flex;
+        align-items:center;
+        flex-direction: column;
+        padding: 50px 0px;
+        height: 60%;
+  
+        img {
+          width: 200px;
+          height: 200px;
+        }
+        h2,
+        p {
+          text-align: center;
+          padding: 10px 10px;
+          margin: 0;
+        }
+        h2{
+          font-size: 35px;
+        }
+        p{
+          font-size: 14px;
+        }
+      }
+
+
     }
   }
 }
 
   .items {
-    overflow: auto;
-    height: 70%;
+    overflow-y: auto;
+    height: 100%;
     margin-bottom: 0px;
 
       .cartItem {
@@ -216,8 +247,10 @@ header {
 
 
 .cartTotalBlock {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;  
+  height: 30%; 
         
     ul {
       list-style: none;
