@@ -1,4 +1,6 @@
 function Drawer({ onClose, onRemove, items = [] }) {
+  const totalPrice = items.reduce((sum, item) => sum + item.price, 0); // Вычисляем сумму всех цен
+
   return (
     <div className='overlay'>
       <div className='drawer'>
@@ -39,7 +41,7 @@ function Drawer({ onClose, onRemove, items = [] }) {
                 <li>
                   <span>Итого:</span>
                   <div></div>
-                  <b>25,70 руб.</b>
+                  <b>{totalPrice.toFixed(2)} руб.</b>{' '}
                 </li>
               </ul>
 
@@ -52,7 +54,7 @@ function Drawer({ onClose, onRemove, items = [] }) {
           <div className='cartEmpty'>
             <img src='/img/cart empty.png' alt='Cart empty' />
             <h2>Корзина пуста</h2>
-            <p>Добавти хотя бы один букет, что бы сделать заказ.</p>
+            <p>Добавьте хотя бы один букет, что бы сделать заказ.</p>
           </div>
         )}
       </div>

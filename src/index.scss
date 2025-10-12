@@ -182,7 +182,7 @@ header {
 
 
 .content {
-  display: flex;
+  /*display: flex;*/
   flex-direction: row-reverse;
   padding: 40px 40px 10px 40px;
   font-family: Inder;
@@ -317,11 +317,10 @@ header {
     text-align: center;
     font-size: 22px;
     margin: 0;
-    padding-bottom: 20px;
+    padding: 20px 20px;
     text-transform: uppercase;
     color: #033017;
     letter-spacing: 0.2em;
-    padding-left: 40px;
   }
 }
 
