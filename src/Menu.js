@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 function Menu() {
   return (
     <div className='menuBlock'>
-      <Link to='/catalog'>
+      <Link to='/catalog' className='pageLink'>
         <h2>каталог</h2>
       </Link>
 
       <h2>о нас</h2>
-      <Link to='/'>
+      <Link to='/' className='pageLink'>
         <h3>Lilu Flowers</h3>
       </Link>
 

@@ -8,6 +8,12 @@ body {
 * {
   font-family: 'Inter', system-ui;
 }
+.pageLink {
+     text-decoration: none;
+     &:hover{
+      text-decoration: none;
+     } 
+  }
 
 .wrapper{
   height: 100%;
@@ -180,10 +186,8 @@ header {
 
 }
 
-
+/*Catalog and Search*/
 .content {
-  /*display: flex;*/
-  flex-direction: row-reverse;
   padding: 40px 40px 10px 40px;
   font-family: Inder;
   
@@ -195,6 +199,8 @@ header {
     padding: 0 15px;
     border-radius: 10px;
     position: relative;
+    margin-left: auto; 
+    width: fit-content; 
 
     input {
       border: 0;
@@ -348,9 +354,17 @@ header {
   border-top: 5px solid #033017;
   border-bottom: 5px solid #033017;
 
+  .menuLink {
+     text-decoration: none;
+     &:hover{
+      text-decoration: none;
+     } 
+  }
+
   h2{
     font-size: 16px;
     padding: 0px 20px;
+    color: #000000;
     letter-spacing: 0.1em;
     transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
 
@@ -370,4 +384,204 @@ header {
     color: #000000;
     padding: 0px 100px;
   }  
+}
+
+/*Home*/
+
+.MenuContent,
+.Menu-Delivery { 
+  h3{
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-size: 22px;
+    margin: 0;
+    padding-top: 40px;
+    text-transform: uppercase;
+    color: #033017;
+    letter-spacing: 0.2em;
+  }
+}
+
+.MenuContent {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  
+  .fonImg{
+    width: 100%;
+    height: auto;
+    border-bottom: 3px solid #033017
+  }
+  .Menu-catalog{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 30px 20px 60px 20px;
+    font-family: Inder;
+
+    img{
+      display: flex;
+      align-items:center;
+      width: 200px;
+      height: auto;
+      border: 1px solid #F2C1C1;
+      border-radius: 30px;
+      padding: 20px;
+      margin: 10px 10px;
+    }
+  }
+
+  .Menu-AboutUs {
+    display: flex;
+    position: relative;
+    align-items: center;
+  
+    img {
+      width: 50%;
+      height: auto;
+      margin-left: auto;
+    }
+
+    .Block-AboutUs {
+      position: absolute;
+      width: 50%;
+      height: auto;
+      border: 3px solid #033017;
+      border-radius: 30px;
+      margin-left: 10%;
+      background: rgb(246 246 246 / 66%);
+
+      div {
+        padding: 25px 0px;
+      }
+      h3,
+      p {
+        text-align: center;
+        padding: 15px 40px 15px 40px;
+        margin: 0;
+      }
+      h3 {
+        padding: 20px 0px;
+        font-size: 20px;
+      }
+      p {
+        font-size: 16px;
+      }
+      .lineUs {
+        width: 100%;
+        height: 2px;
+        background:#033017;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+
+  .infoAboutUs {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    padding: 10px 20px;
+    background-color: #B6BBAF;
+    border-top: 3px solid #033017;
+    border-bottom: 3px solid #033017;
+  
+    .info-block {
+      margin: 0;
+      padding: 0;
+    }
+    .info{
+      display: flex;
+      padding: 0px 40px 0px 40px;
+
+      img {
+        width: 30px;
+        height: 30px;
+        padding: 15px 20px;
+      }
+      p {
+        align-content: center;
+        font-size: 16px;
+      }  
+    }
+  }
+
+  .Menu-Delivery {
+    height: auto;
+    padding: 20px 20px;
+
+    .line {
+      display: flex;
+      width: 80%;
+      height: 2px;
+      margin: 0 auto;
+      margin-top: 20px;
+      background: #033017;
+    }
+    .infoDelivery {
+      display: flex;
+
+      div {
+        display: flex;
+        width: 50%;
+        height: auto;
+      }
+      img {
+        display: flex;
+        width: 60%;
+        height: auto;
+        margin-left: auto;
+        padding: 40px 40px;
+      }
+      ul {
+        display: flex;
+        flex-wrap: wrap-reverse;
+        align-items: center;
+        padding: 40px 40px;
+        li {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  .Menu-Reviews {
+    height: auto;
+    padding: 20px 0px;
+    background-color: #B6BBAF;
+    border-bottom: 3px solid #033017;
+
+    h3 {
+      padding-bottom: 20px;
+    }
+    .line {
+      display: flex;
+      width: 90%;
+      height: 2.5px;
+      margin: 0 auto;
+      margin-bottom: 30px;
+      background: linear-gradient(
+        to right,
+        rgba(3, 48, 23, 0.5) calc(50% - 10px),  /* Полупрозрачный до центра -10px */
+        #033017 calc(50% - 40px),              /* Яркий от центра -10px */
+        #033017 calc(50% + 40px),              /* Яркий до центра +10px */
+        rgba(3, 48, 23, 0.5) calc(50% + 10px)  /* Полупрозрачный после центра +10px */
+      );
+    }
+    div {
+      display: flex;
+
+      .min {
+        width: 29%;
+        height: auto;
+        padding: 50px 0px 50px 0px;
+      }
+      .max {
+        width: 38%;
+        height: auto;
+        padding: 20px 20px;
+      }
+    }
+  }
 }

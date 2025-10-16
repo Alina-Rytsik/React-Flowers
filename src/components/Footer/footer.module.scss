@@ -1,3 +1,10 @@
+.pageLink {
+     text-decoration: none;
+     &:hover{
+      text-decoration: none;
+     } 
+  }
+
 .footer {
   display: flex;
   justify-content: space-between;
@@ -9,6 +16,7 @@
     display: flex;
     margin: 0;
     padding: 0;
+    color: #033017;
   }
   h3 {
     text-transform: uppercase;

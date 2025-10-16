@@ -1,5 +1,7 @@
 import React from 'react';
 import Card from '../components/Card/Card';
+import Search from '../components/Search';
+import Call from '../components/Call/index.js';
 
 function Catalog({
   items,
@@ -14,34 +16,17 @@ function Catalog({
   setIsDropdownOpen, // Добавьте этот prop
 }) {
   return (
+    <div>
     <div className='content'>
-      <div className='search-blok'>
-        <img src='img/search.png' alt='Search' />
-        <input
-          onChange={onChangeSearchInput}
-          onFocus={() => setIsDropdownOpen(true)} // Теперь работает, так как setIsDropdownOpen передан
-          onBlur={onBlurInput}
-          value={searchValue}
-          placeholder='Поиск ...'
-        />
-        {searchValue && (
-          <img
-            onClick={() => onChangeSearchInput({ target: { value: '' } })} // Сброс через prop (работает)
-            className='clear'
-            src='/img/closeCard.png'
-            alt='Clear'
-          />
-        )}
-        {isDropdownOpen && suggestions.length > 0 && (
-          <ul className='dropdown-menu'>
-            {suggestions.map((title, index) => (
-              <li key={index} onMouseDown={() => onSelectSuggestion(title)}>
-                {title}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      <Search 
+        searchValue={searchValue}
+        isDropdownOpen={isDropdownOpen}
+        suggestions={suggestions}
+        onChangeSearchInput={onChangeSearchInput}
+        onSelectSuggestion={onSelectSuggestion}
+        onBlurInput={onBlurInput}
+        setIsDropdownOpen={setIsDropdownOpen}  // Передано в Search
+      />
 
       <div className='catalog'>
         <h2>Каталог</h2>
@@ -62,6 +47,8 @@ function Catalog({
           <p>Ничего не найдено по запросу "{searchValue}"</p>
         )}
       </div>
+    </div>
+    <Call />
     </div>
   );
 }

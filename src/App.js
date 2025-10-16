@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 
 import Header from './components/Header';
-import Call from './components/Call/index.js';
 import Footer from './components/Footer/Footer.js';
 import Menu from './Menu.js';
 import Catalog from './pages/Catalog'; // Добавлено
@@ -126,6 +125,7 @@ function App() {
           {/* Перемещено: теперь содержит только Route */}
           <Route
             path='/'
+            exact
             element={
               <Home
                 items={items}
@@ -153,11 +153,11 @@ function App() {
                 onSelectSuggestion={onSelectSuggestion}
                 onBlurInput={onBlurInput}
                 onAddToCart={onAddToCart}
+                setIsDropdownOpen={setIsDropdownOpen}
               />
             }
           />
         </Routes>
-        <Call />
         <Footer />
       </div>
     </>
