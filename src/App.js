@@ -70,21 +70,33 @@ function App() {
   }, []);
 
   const onAddToCart = (obj) => {
-    axios
-      .post('https://68d45560214be68f8c690986.mockapi.io/cart', obj)
-      .then((res) => {
-        setCartItems((prev) => [...prev, res.data]);
-      })
-      .catch((error) => console.error('Ошибка добавления:', error));
+    console.log(obj);
+    const existingItem = cartItems.find((item) => Number(item.itemId) === Number(obj.id)); // Ищем по itemId
+    if (existingItem) {
+      // Если товар уже в корзине, удаляем его
+      onRemoveItem(existingItem.id); // ID из корзины
+    } else {
+      // Иначе добавляем с itemId
+      axios
+        .post('https://68d45560214be68f8c690986.mockapi.io/cart', { ...obj, itemId: obj.id })
+        .then((res) => {
+          setCartItems((prev) => [...prev, res.data]);
+        })
+        .catch((error) => console.error('Ошибка добавления:', error));
+    }
   };
 
   const onRemoveItem = (id) => {
     axios
-      .delete(`https://68d45560214be68f8c690986.mockapi.io/cart/${id}`) // Исправлено: кавычки
+      .delete(`https://68d45560214be68f8c690986.mockapi.io/cart/${id}`)
       .then(() => {
-        setCartItems((prev) => prev.filter((item) => item.id !== id));
+        setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(id))); // Строгое сравнение с числами
       })
-      .catch((error) => console.error('Ошибка удаления:', error));
+      .catch((error) => {
+        console.error('Ошибка удаления:', error);
+        // Если 404, товар уже удалён — просто обновляем локальный массив
+        setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(id)));
+      });
   };
 
   const onChangeSearchInput = (event) => {
@@ -153,6 +165,7 @@ function App() {
                 onSelectSuggestion={onSelectSuggestion}
                 onBlurInput={onBlurInput}
                 onAddToCart={onAddToCart}
+                cartItems={cartItems}
                 setIsDropdownOpen={setIsDropdownOpen}
               />
             }

@@ -1,16 +1,32 @@
 import React from 'react';
+import ContentLoader from 'react-content-loader';
 import styles from './Card.module.scss';
 
-function Card({ title, imageUrl, price, onFavorite, onPlus }) {
-  /*const onButton = () => {
-    alert(props.title);
-  };*/
+function Card({ id, title, imageUrl, price, onPlus, cartItems = [] }) {
+  // Добавлен prop cartItems (по умолчанию пустой массив)
   const [isAdded, setIsAdded] = React.useState(false);
   const [isFavorite, setIsFavorite] = React.useState(false);
 
-  const onClickPlus = () => {
-    onPlus({ title, imageUrl, price });
-    setIsAdded(!isAdded); //при клике будетсмена с + на "галочку". И на оборот.
+  // Синхронизируем isAdded с состоянием корзины
+  React.useEffect(() => {
+    const isInCart = cartItems.some((cartItem) => Number(cartItem.itemId) === Number(id));
+    console.log(
+      `useEffect for Card id=${id}: isInCart=${isInCart}, cartItems.length=${cartItems.length}`,
+    ); // Лог для отладки
+    setIsAdded(isInCart);
+  }, [cartItems, id]);
+
+  const onClickPlus = async () => {
+    // Сделаем async, чтобы дождаться onPlus
+    console.log(`Clicked plus for id=${id}, current isAdded=${isAdded}`); // Лог для отладки
+    setIsAdded(!isAdded); // Оптимистичное обновление: сразу меняем иконку
+    try {
+      await onPlus({ id, title, imageUrl, price }); // Ждём завершения onAddToCart
+      // После await cartItems обновится, useEffect скорректирует, если нужно
+    } catch (error) {
+      console.error('Error adding/removing item:', error);
+      setIsAdded(!isAdded); // Откат, если ошибка
+    }
   };
 
   const onClickFavorite = () => {
