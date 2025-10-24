@@ -5,9 +5,11 @@ import axios from 'axios';
 import Header from './components/Header';
 import Footer from './components/Footer/Footer.js';
 import Menu from './Menu.js';
-import Catalog from './pages/Catalog'; // Добавлено
-import Home from './pages/Home'; // Добавлено
-import Drawer from './components/Drawer'; // Добавлено
+import Catalog from './pages/Catalog';
+import Home from './pages/Home';
+import Drawer from './components/Drawer';
+
+const AppContext = React.createContext({});
 
 /*const arr = [
   {
@@ -59,6 +61,7 @@ function App() {
   const [searchValue, setSearchValue] = React.useState('');
   const [cartOpened, setCartOpened] = React.useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false); // Новое: для показа dropdown
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     axios.get('https://68d45560214be68f8c690986.mockapi.io/items').then((res) => {
@@ -67,16 +70,20 @@ function App() {
     axios.get('https://68d45560214be68f8c690986.mockapi.io/cart').then((res) => {
       setCartItems(res.data);
     });
+
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 5000); // = 5 сек.
+    return () => clearTimeout(timer); // Очистка таймера
   }, []);
 
   const onAddToCart = (obj) => {
     console.log(obj);
-    const existingItem = cartItems.find((item) => Number(item.itemId) === Number(obj.id)); // Ищем по itemId
+    const existingItem = cartItems.find((item) => Number(item.itemId) === Number(obj.id)); //
     if (existingItem) {
       // Если товар уже в корзине, удаляем его
-      onRemoveItem(existingItem.id); // ID из корзины
+      onRemoveItem(existingItem.id);
     } else {
-      // Иначе добавляем с itemId
       axios
         .post('https://68d45560214be68f8c690986.mockapi.io/cart', { ...obj, itemId: obj.id })
         .then((res) => {
@@ -94,8 +101,7 @@ function App() {
       })
       .catch((error) => {
         console.error('Ошибка удаления:', error);
-        // Если 404, товар уже удалён — просто обновляем локальный массив
-        setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(id)));
+        setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(id))); //обновляем локальный массив
       });
   };
 
@@ -123,57 +129,60 @@ function App() {
     .slice(0, 5);
 
   return (
-    <>
-      {' '}
-      {/* Добавлено: обёртка Router */}
-      <div className='wrapper'>
-        {cartOpened && (
-          <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />
-        )}
-        <Header onClickCart={() => setCartOpened(true)} />
-        <Menu />
-        <Routes>
-          {' '}
-          {/* Перемещено: теперь содержит только Route */}
-          <Route
-            path='/'
-            exact
-            element={
-              <Home
-                items={items}
-                filteredItems={filteredItems}
-                searchValue={searchValue}
-                isDropdownOpen={isDropdownOpen}
-                suggestions={suggestions}
-                onChangeSearchInput={onChangeSearchInput}
-                onSelectSuggestion={onSelectSuggestion}
-                onBlurInput={onBlurInput}
-                onAddToCart={onAddToCart}
-              />
-            }
-          />
-          <Route
-            path='/catalog'
-            element={
-              <Catalog
-                items={items}
-                filteredItems={filteredItems}
-                searchValue={searchValue}
-                isDropdownOpen={isDropdownOpen}
-                suggestions={suggestions}
-                onChangeSearchInput={onChangeSearchInput}
-                onSelectSuggestion={onSelectSuggestion}
-                onBlurInput={onBlurInput}
-                onAddToCart={onAddToCart}
-                cartItems={cartItems}
-                setIsDropdownOpen={setIsDropdownOpen}
-              />
-            }
-          />
-        </Routes>
-        <Footer />
-      </div>
-    </>
+    <AppContext.Provider value={{ items, cartItems }}>
+      <>
+        <div className='wrapper'>
+          {cartOpened && (
+            <Drawer
+              items={cartItems}
+              onClose={() => setCartOpened(false)}
+              onRemove={onRemoveItem}
+            />
+          )}
+          <Header onClickCart={() => setCartOpened(true)} />
+          <Menu />
+          <Routes>
+            <Route
+              path='/'
+              exact
+              element={
+                <Home
+                  items={items}
+                  filteredItems={filteredItems}
+                  searchValue={searchValue}
+                  isDropdownOpen={isDropdownOpen}
+                  suggestions={suggestions}
+                  onChangeSearchInput={onChangeSearchInput}
+                  onSelectSuggestion={onSelectSuggestion}
+                  onBlurInput={onBlurInput}
+                  onAddToCart={onAddToCart}
+                />
+              }
+            />
+            <Route
+              path='/catalog'
+              element={
+                <Catalog
+                  items={items}
+                  filteredItems={filteredItems}
+                  searchValue={searchValue}
+                  isDropdownOpen={isDropdownOpen}
+                  suggestions={suggestions}
+                  onChangeSearchInput={onChangeSearchInput}
+                  onSelectSuggestion={onSelectSuggestion}
+                  onBlurInput={onBlurInput}
+                  onAddToCart={onAddToCart}
+                  cartItems={cartItems}
+                  setIsDropdownOpen={setIsDropdownOpen}
+                  loading={loading}
+                />
+              }
+            />
+          </Routes>
+          <Footer />
+        </div>
+      </>
+    </AppContext.Provider>
   );
 }
 

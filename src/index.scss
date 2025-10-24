@@ -362,6 +362,7 @@ header {
   }
 
   h2{
+    display: inline-block;
     font-size: 16px;
     padding: 0px 20px;
     color: #000000;
@@ -371,19 +372,31 @@ header {
     &:hover{
       font-size: 16px;
       padding: 5px 10px;
-      transition: all 0.2s linear;
-      box-shadow: 0 14px 25px rgba(59, 135, 61, 0.364);
       transform: translateY(2px);
-      border:1px solid #F2C1C1;
+      animation: wave 2s ease-in-out infinite;
     }
   }
   h3{
+    display: inline-block;
     font-size: 30px;
     text-transform: uppercase;
     letter-spacing: 0.5em;
     color: #000000;
     padding: 0px 100px;
-  }  
+    
+
+    &:hover{
+      animation: wave 2s ease-in-out infinite;
+      @keyframes wave {
+        80% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-5px);
+        }
+      } 
+    } 
+  } 
 }
 
 /*Home*/
@@ -400,6 +413,18 @@ header {
     text-transform: uppercase;
     color: #033017;
     letter-spacing: 0.2em;
+    
+    &:hover{
+      animation: wave 2s ease-in-out infinite;
+      @keyframes wave {
+        100% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-5px);
+        }
+      } 
+    } 
   }
 }
 

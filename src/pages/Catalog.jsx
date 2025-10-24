@@ -15,7 +15,10 @@ function Catalog({
   onAddToCart,
   setIsDropdownOpen, 
   cartItems,
+  loading
 }) {
+
+
   return (
     <div>
       <div className='content'>
@@ -44,6 +47,7 @@ function Catalog({
               onFavorite={() => console.log('Добавили в закладки')}
               onPlus={onAddToCart}
               cartItems={cartItems}  // Передаём cartItems для синхронизации
+               loading={loading}
             />
           ))}
           {filteredItems.length === 0 && searchValue && (
