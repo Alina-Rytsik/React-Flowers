@@ -64,7 +64,7 @@ function Home() {
           <div className='line'></div>
           <div className='infoDelivery'>
             <div>
-              <img src='/img/home/flowers-delivery.png' />
+              <img src='/img/home/flowers-delivery.png'  alt='flowers delivery'/>
             </div>
             <div>
               <ul>

@@ -9,6 +9,10 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.12.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongoose": "^8.20.0",
     "react": "^19.1.1",
     "react-content-loader": "^7.1.1",
     "react-dom": "^19.1.1",
@@ -48,5 +52,17 @@
     "nth-check": "^2.1.1",
     "postcss": "^8.4.38",
     "webpack-dev-server": "^4.15.1"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "ErrorBoundary.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alina-Rytsik/React-Flowers.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alina-Rytsik/React-Flowers/issues"
   }
 }
