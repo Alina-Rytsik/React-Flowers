@@ -1,10 +1,13 @@
 import styles from './footer.module.scss';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
     <div className={styles.footer}>
       <div className={styles.footerLeft}>
-        <h3>Lilu Flowers</h3>
+        <Link to='/' className='pageLink'>
+          <h3>Lilu Flowers</h3>
+        </Link>
         <p>г. Гомель, Площадь Ленина 41</p>
       </div>
 
