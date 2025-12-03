@@ -183,10 +183,98 @@ header {
   margin-left: 50px;
   margin-right: 50px;
   }
-
 }
 
-/*Catalog and Search*/
+/* Login */
+.login { 
+  display: flex;
+  position: relative;
+
+  img{
+    display: flex;
+    align-items: flex-end;
+    margin-left: auto;
+    width: auto;
+    height: 330px;
+    margin-top: 150px;
+    margin-bottom: 50px;
+    margin-right: 25px;
+  }
+    .box {
+      position: absolute;
+      width: 50%;
+      height: auto;
+      border: 1px solid #033017;
+      border-radius: 30px;
+      margin-left: 25%;
+      margin-top: 5%;
+      background: rgba(246, 246, 246, 0.66);
+      
+      h1 {
+        display: inline-block;
+        width: 100%;
+        font-size: 25px;
+        text-transform: uppercase;
+        letter-spacing: 0.5em;
+        color: #000000;
+        padding: 15px 0px;
+        text-align: center;
+      }
+      
+      input {
+        width: 65%;
+        height: 50px;
+        margin-top: 20px;
+        margin-left: 15%;
+        font-size: 20px;
+        background-color: #ffffff;
+        border: solid 2px #B6BBAF;
+      } 
+      button {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        margin: 0 auto;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        width: 300px;
+        background: lighten(#F2C1C1, 5%);
+        border: 1px solid #ffffff;
+        text-shadow: 0.1em 0.1em 0.1em #faa4a4;
+        border-radius: 20px;
+        text-align: center;
+        color: #ffffff;
+        padding: 15px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s ease-in-out;
+
+        &:hover {
+          background: #F2C1C1;
+          text-shadow: 0.1em 0.1em 0.1em #faa4a4;
+          img {
+            transform: translateX(10px);
+          }
+        }
+        &:active {
+          background: lighten(#F2C1C1, 5%);
+        }
+      }
+
+      a {
+        line-height: 50px;
+        margin-left: 50px;
+        color: #000000;
+        font-size: 16px;
+        letter-spacing: 0.2em;
+      }
+    } 
+      
+}
+
+
+/* Catalog and Search */
 .content {
   padding: 40px 40px 10px 40px;
   font-family: Inder;

@@ -8,8 +8,8 @@ import Menu from './Menu.js';
 import Catalog from './pages/Catalog';
 import Home from './pages/Home';
 import Drawer from './components/Drawer';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Login from './pages/Login.jsx';
+import Register from './pages/Register.jsx';
 import Account from './pages/Account';
 
 const AppContext = React.createContext({});
@@ -181,12 +181,12 @@ function App() {
                 />
               }
             />
-           <Route path="/login" element={<Login />} />
-           <Route path="/register" element={<Register />} />
-           <Route path="/account" element={<Account />} />
-         </Routes>
-         <Footer />
-       </div>
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/account' element={<Account />} />
+          </Routes>
+          <Footer />
+        </div>
       </>
     </AppContext.Provider>
   );
