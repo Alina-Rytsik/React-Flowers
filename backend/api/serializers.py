@@ -1,17 +1,20 @@
 from rest_framework import serializers
 from .models import Category, Product, Order, OrderItem
 from django.contrib.auth.models import User
+from .models import User
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = '__all__' # Сериализуем все поля модели
+class AdminUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'is_admin')
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
-
-class ProductSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = '__all__'
-
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem

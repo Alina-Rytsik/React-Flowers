@@ -186,9 +186,10 @@ header {
 }
 
 /* Login */
-.login { 
+.login,.register { 
   display: flex;
   position: relative;
+  margin: 50px 0px 50px 0px;
 
   img{
     display: flex;
@@ -207,26 +208,25 @@ header {
       border: 1px solid #033017;
       border-radius: 30px;
       margin-left: 25%;
-      margin-top: 5%;
+      margin-top: 20px;
       background: rgba(246, 246, 246, 0.66);
       
       h1 {
         display: inline-block;
         width: 100%;
-        font-size: 25px;
+        font-size: 20px;
         text-transform: uppercase;
         letter-spacing: 0.5em;
         color: #000000;
-        padding: 15px 0px;
+        padding: 20px 0px 10px 0px;
         text-align: center;
       }
       
       input {
         width: 65%;
         height: 50px;
-        margin-top: 20px;
-        margin-left: 15%;
-        font-size: 20px;
+        margin: 20px 15% 0px 15%;
+        font-size: 14px;padding-left: 15px;
         background-color: #ffffff;
         border: solid 2px #B6BBAF;
       } 
@@ -261,10 +261,15 @@ header {
           background: lighten(#F2C1C1, 5%);
         }
       }
-
+      p {
+        color: #000000;
+        font-size: 16px;
+        padding: 0px 50px;
+        margin: 0;
+      }
       a {
         line-height: 50px;
-        margin-left: 50px;
+        margin-left: 40px;
         color: #000000;
         font-size: 16px;
         letter-spacing: 0.2em;

@@ -1,22 +1,23 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    is_admin = models.BooleanField(default=False)
+
 
 class Category(models.Model):
-    name = models.CharField(max_length=255, verbose_name="Название категории")
+    name = models.CharField(max_length=255, verbose_name="Название букета")
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена")
+    image = models.ImageField(upload_to='products/', verbose_name="Изображение")
+    # ... другие поля, если нужны
 
     def __str__(self):
         return self.name
-
-    class Meta:
-        verbose_name = "Категория"
-        verbose_name_plural = "Категории"
-
-
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name="Название букета")
-    description = models.TextField(verbose_name="Описание")
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена")
     image = models.ImageField(upload_to='products/', verbose_name="Изображение")
-    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE, verbose_name="Категория")
+    
 
     def __str__(self):
         return self.name

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import axios from 'axios';
 
 import Header from './components/Header';
@@ -58,6 +58,37 @@ const AppContext = React.createContext({});
 ];*/
 //Данные карточек букетов на бэке items (function App => items)
 
+// *** !!! БЭК !!! ***
+// Настройка базового URL для всех запросов
+axios.defaults.baseURL = 'http://localhost:8000';
+// Интерцептор для автоматической добавления токена в заголовки запросов
+axios.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
+// Интерцептор для обработки ошибки 401 (Неавторизован)
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      // Если токен просрочен или недействителен, удаляем его и перенаправляем на страницу входа
+      console.log('Ошибка 401: Токен недействителен. Выполняется выход...');
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      window.location.href = '/login'; // Принудительный перезапуск приложения для сброса состояния
+    }
+    return Promise.reject(error);
+  },
+);
+
 function App() {
   const [items, setItems] = React.useState([]);
   const [cartItems, setCartItems] = React.useState([]); //корзина пуста, данные с mockapi.io
@@ -65,6 +96,16 @@ function App() {
   const [cartOpened, setCartOpened] = React.useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false); // Новое: для показа dropdown
   const [loading, setLoading] = React.useState(true);
+
+  // Новое состояние: проверка, авторизован ли пользователь
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+  // Эффект для проверки наличия токена при загрузке приложения
+  React.useEffect(() => {
+    const token = localStorage.getItem('access_token');
+    // Простая проверка: если токен есть, считаем пользователя авторизованным.
+    // На практике нужно проверять его валидность на бэкенде.
+    setIsAuthenticated(!!token);
+  }, []); // Запускается только при первом рендере
 
   React.useEffect(() => {
     axios.get('https://68d45560214be68f8c690986.mockapi.io/items').then((res) => {
@@ -181,9 +222,18 @@ function App() {
                 />
               }
             />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/account' element={<Account />} />
+            <Route
+              path='/login'
+              element={isAuthenticated ? <Navigate to='/account' replace /> : <Login />}
+            />
+            <Route
+              path='/register'
+              element={isAuthenticated ? <Navigate to='/account' replace /> : <Register />}
+            />
+            <Route
+              path='/account'
+              element={isAuthenticated ? <Account /> : <Navigate to='/login' replace />}
+            />
           </Routes>
           <Footer />
         </div>

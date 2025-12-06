@@ -7,6 +7,16 @@ from django.core.mail import send_mail
 from .models import Category, Product, Order
 from .serializers import CategorySerializer, ProductSerializer, OrderSerializer, RegisterSerializer, UserSerializer
 
+from rest_framework import permissions, viewsets
+from .models import User
+from .serializers import AdminUserSerializer
+
+class AdminUserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.filter(is_admin=True)
+    serializer_class = AdminUserSerializer
+    permission_classes = [permissions.IsAdminUser]
+
+
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
@@ -46,7 +56,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.action in ['list', 'retrieve']:
-            permission_classes = [AllowAny]
+            permission_classes = [AllowAny] # Разрешаем доступ без авторизации
         else:
             permission_classes = [IsAdminUser]
         return [permission() for permission in permission_classes]
