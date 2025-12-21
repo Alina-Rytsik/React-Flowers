@@ -108,12 +108,25 @@ function App() {
   }, []); // Запускается только при первом рендере
 
   React.useEffect(() => {
-    axios.get('https://68d45560214be68f8c690986.mockapi.io/items').then((res) => {
-      setItems(res.data);
-    });
-    axios.get('https://68d45560214be68f8c690986.mockapi.io/cart').then((res) => {
-      setCartItems(res.data);
-    });
+    // Запрос к вашему Django API
+    axios
+      .get('http://localhost:8000/api/items/')
+      .then((res) => {
+        setItems(res.data);
+      })
+      .catch((error) => {
+        console.error('Ошибка загрузки товаров:', error);
+      });
+
+    // Запрос к mock API (оставляем как было)
+    axios
+      .get('https://68d45560214be68f8c690986.mockapi.io/cart')
+      .then((res) => {
+        setCartItems(res.data);
+      })
+      .catch((error) => {
+        console.error('Ошибка загрузки корзины:', error);
+      });
 
     const timer = setTimeout(() => {
       setLoading(false);

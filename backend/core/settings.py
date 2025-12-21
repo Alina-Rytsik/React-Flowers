@@ -1,12 +1,11 @@
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = 'django-insecure-ut^l+pylwv-_zy&0l33_b3(^r45#1s3p2_kl@q^#y9&f-c#vr0'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -29,12 +28,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     # Сторонние приложения
+    'api', # Ваше приложение с API
     'rest_framework',
     'rest_framework_simplejwt',
-    'rest_framework.authtoken', # Для токеновой аутентификации
     'corsheaders', # Важно! Для разрешения запросов от React
-    'api', # Ваше приложение с API
     'drf_yasg',
 ]
 
@@ -47,10 +46,16 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated', # По умолчанию требовать аутентификацию
     ]
 }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # Указываем, что по умолчанию аутентификация будет через JWT
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
 
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+MIDDLEWARE = [ 
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -92,6 +97,7 @@ DATABASES = {
 # это имя вашего приложения (должно совпадать с именем папки приложения, где определена модель User).
 #User' — это имя вашего класса модели.
 AUTH_USER_MODEL = 'api.User'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
