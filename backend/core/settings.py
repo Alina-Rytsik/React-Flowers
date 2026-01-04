@@ -1,5 +1,5 @@
 from pathlib import Path
-
+from datetime import timedelta # настройки времени жизни токенов
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,19 +39,16 @@ INSTALLED_APPS = [
 
 # настройки DRF (опционально, но полезно)
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated', # По умолчанию требовать аутентификацию
-    ]
-}
-REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         # Указываем, что по умолчанию аутентификация будет через JWT
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+    # требует аутентификацию для ВСЕХ API эндпоинтов по умолчанию.
+        'rest_framework.permissions.IsAuthenticated', 
+    ]
 }
+
 
 MIDDLEWARE = [ 
     'corsheaders.middleware.CorsMiddleware',
@@ -119,8 +116,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -131,14 +126,17 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
-
 STATIC_URL = 'static/'
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+# Настройки срока действия токенов Simple JWT 
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}

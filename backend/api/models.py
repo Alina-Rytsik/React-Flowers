@@ -4,6 +4,13 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     is_admin = models.BooleanField(default=False)
 
+    class Meta:
+        verbose_name = "Пользователь"
+        verbose_name_plural = "Пользователи"
+    
+    def __str__(self):
+        return self.username
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255, verbose_name="Название букета")
@@ -13,7 +20,12 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    class Meta:
+        verbose_name = "Категория"
+        verbose_name_plural = "Категории"
+    
 class Product(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Категория")
     name = models.CharField(max_length=255, verbose_name="Название букета")
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена")
     image = models.ImageField(upload_to='products/', verbose_name="Изображение")
@@ -49,3 +61,7 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name} в заказе №{self.order.id}"
+    
+    class Meta:
+        verbose_name = "Элемент заказа"
+        verbose_name_plural = "Элементы заказа"

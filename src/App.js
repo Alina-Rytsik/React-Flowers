@@ -110,7 +110,7 @@ function App() {
   React.useEffect(() => {
     // Запрос к вашему Django API
     axios
-      .get('http://localhost:8000/api/items/')
+      .get('https://68d45560214be68f8c690986.mockapi.io/items')
       .then((res) => {
         setItems(res.data);
       })

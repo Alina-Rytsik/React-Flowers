@@ -26,7 +26,7 @@ function Register() {
       <img src="/img/lavender.png" alt="lavender" />
 
       <div className='box'>
-        <h1>Регистратция</h1>
+        <h1>Регистрация</h1>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
