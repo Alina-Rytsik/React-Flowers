@@ -71,7 +71,7 @@ body {
         padding: 50px 0px;
         height: 60%;
   
-        img {
+        .Empty-img {
           width: 200px;
           height: 200px;
         }
@@ -283,6 +283,13 @@ header {
 .content {
   padding: 40px 40px 10px 40px;
   font-family: Inder;
+  .cards-wrapper {
+    display: flex;           
+    flex-wrap: wrap;        /* Разрешает перенос на новую строку */
+    margin: 20px;
+    justify-content: center; /* Центрирует карточки на экране */
+    padding: 20px 0;
+  }
   
   .search-blok {
     display: flex;

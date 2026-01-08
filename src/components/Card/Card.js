@@ -3,28 +3,16 @@ import ContentLoader from 'react-content-loader';
 import styles from './Card.module.scss';
 
 function Card({ id, title, imageUrl, price, onPlus, cartItems = [], loading = false }) {
-  const [isAdded, setIsAdded] = React.useState(false);
+  // Проверяем, есть ли этот конкретный ID в корзине
+  const isAdded = cartItems.some((obj) => Number(obj.id) === Number(id));
   const [isFavorite, setIsFavorite] = React.useState(false);
 
-  // Синхронизируем isAdded с состоянием корзины
-  React.useEffect(() => {
-    const isInCart = cartItems.some((cartItem) => Number(cartItem.itemId) === Number(id));
-    setIsAdded(isInCart);
-  }, [cartItems, id]);
-
-  const onClickPlus = async () => {
-    setIsAdded(!isAdded); // Оптимистичное обновление: сразу меняем иконку
-    try {
-      await onPlus({ id, title, imageUrl, price }); // Ждём завершения onAddToCart
-      // После await cartItems обновится
-    } catch (error) {
-      console.error('Error adding/removing item:', error);
-      setIsAdded(!isAdded); // Откат, если ошибка
-    }
+  const onClickPlus = () => {
+    onPlus({ id, title, imageUrl, price });
   };
 
   const onClickFavorite = () => {
-    setIsFavorite(!isFavorite); //смена с серого сердца на розовое. И на оборот.
+    setIsFavorite(!isFavorite);
   };
 
   return (
@@ -49,8 +37,6 @@ function Card({ id, title, imageUrl, price, onPlus, cartItems = [], loading = fa
           <div
             className={`${styles.favorite} ${isFavorite ? styles.favorited : ''}`}
             onClick={onClickFavorite}
-            aria-label='Like'
-            role='button'
           >
             <svg className={styles.heart} viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
               <path
@@ -63,7 +49,7 @@ function Card({ id, title, imageUrl, price, onPlus, cartItems = [], loading = fa
             </svg>
           </div>
 
-          <img width={160} height={180} src={imageUrl} alt='Rose red' />
+          <img width={160} height={180} src={imageUrl} alt={title} />
           <h5>{title}</h5>
 
           <div className={styles._blok}>
