@@ -22,32 +22,36 @@ function Register() {
   };
 
   return (
-    <div>
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
+    <div className='register'>
+      <img src="/img/lavender.png" alt="lavender" />
+
+      <div className='box'>
+        <h1>Регистрация</h1>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Имя пользователя"
+          />
         <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
         />
-       <input
-         type="email"
-         value={email}
-         onChange={(e) => setEmail(e.target.value)}
-         placeholder="Email"
-       />
-       <input
-         type="password"
-         value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button type="submit">Register</button>
-      </form>
-     <p>
-       Already have an account? <Link to="/login">Login</Link>
-     </p>
+        <input
+          type="password"
+          value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Пароль"
+          />
+          <button type="submit">Зарегистрироваться</button>
+        </form>
+      <p>
+        У вас уже есть аккаунт? <Link to="/login">Авторизоваться</Link>
+      </p>
+     </div>
    </div>
  );
 }

@@ -4,7 +4,6 @@ import Search from '../components/Search';
 import Call from '../components/Call/index.js';
 
 function Catalog({
-  items,
   filteredItems,
   searchValue,
   isDropdownOpen,
@@ -17,8 +16,6 @@ function Catalog({
   cartItems,
   loading
 }) {
-
-
   return (
     <div>
       <div className='content'>
@@ -29,7 +26,7 @@ function Catalog({
           onChangeSearchInput={onChangeSearchInput}
           onSelectSuggestion={onSelectSuggestion}
           onBlurInput={onBlurInput}
-          setIsDropdownOpen={setIsDropdownOpen}  // Передано в Search
+          setIsDropdownOpen={setIsDropdownOpen}
         />
 
         <div className='catalog'>
@@ -37,21 +34,30 @@ function Catalog({
           <div className='lineBlock'>
             <div className='line'></div>
           </div>
-          {filteredItems.map((item) => (
-            <Card
-              key={item.id}
-              id={item.id} 
-              title={item.title}
-              price={item.price}
-              imageUrl={item.imageUrl}
-              onFavorite={() => console.log('Добавили в закладки')}
-              onPlus={onAddToCart}
-              cartItems={cartItems}  // Передаём cartItems для синхронизации
-               loading={loading}
-            />
-          ))}
-          {filteredItems.length === 0 && searchValue && (
-            <p>Ничего не найдено по запросу "{searchValue}"</p>
+          
+          <div className="cards-wrapper">
+            {loading 
+              ? [...Array(8)].map((_, index) => <Card key={index} loading={true} />)
+              : filteredItems.map((item) => (
+                <Card
+                  key={item.id}
+                  id={item.id} 
+                  title={item.title}
+                  price={item.price}
+                  imageUrl={item.imageUrl}
+                  onFavorite={() => console.log('Добавили в закладки')}
+                  onPlus={(obj) => onAddToCart(obj)}
+                  cartItems={cartItems}
+                  loading={false}
+                />
+              ))
+            }
+          </div>
+
+          {filteredItems.length === 0 && !loading && (
+            <div className="cartEmpty">
+              <p>Ничего не найдено по запросу "{searchValue}"</p>
+            </div>
           )}
         </div>
       </div>

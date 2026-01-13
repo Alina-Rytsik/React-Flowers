@@ -46,7 +46,7 @@ function Login() {
         </form>
         
           <Link to="/register">Зарегистироваться</Link>
-          <Link to="/register">Забыли пароль?</Link>    
+          <Link to="#">Забыли пароль?</Link>    
       </div>
    </div>
  );
