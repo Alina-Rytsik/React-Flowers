@@ -1,5 +1,7 @@
 from pathlib import Path
 from datetime import timedelta # настройки времени жизни токенов
+import os
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,11 +32,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Сторонние приложения
-    'api', # Ваше приложение с API
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders', # Важно! Для разрешения запросов от React
-    'drf_yasg',
+    'drf_yasg', 
+    'products',
+    'api',
 ]
 
 # настройки DRF (опционально, но полезно)
@@ -93,7 +96,7 @@ DATABASES = {
 
 # это имя вашего приложения (должно совпадать с именем папки приложения, где определена модель User).
 #User' — это имя вашего класса модели.
-AUTH_USER_MODEL = 'api.User'
+AUTH_USER_MODEL = 'products.User'
 
 
 # Password validation
@@ -140,3 +143,6 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
