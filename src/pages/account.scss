@@ -1,0 +1,45 @@
+.Menu-AboutUs {
+    display: flex;
+    position: relative;
+    align-items: center;
+  
+    img {
+      width: 50%;
+      height: auto;
+      margin-left: auto;
+    }
+
+    .Block-AboutUs {
+      position: absolute;
+      width: 50%;
+      height: auto;
+      border: 3px solid #033017;
+      border-radius: 30px;
+      margin-left: 10%;
+      background: rgb(246 246 246 / 66%);
+
+      div {
+        padding: 25px 0px;
+      }
+      h3,
+      p {
+        text-align: center;
+        padding: 15px 40px 15px 40px;
+        margin: 0;
+      }
+      h3 {
+        padding: 20px 0px;
+        font-size: 20px;
+      }
+      p {
+        font-size: 16px;
+      }
+      .lineUs {
+        width: 100%;
+        height: 2px;
+        background:#033017;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }

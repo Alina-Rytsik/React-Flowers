@@ -9,7 +9,7 @@ import Home from './pages/Home';
 import Drawer from './components/Drawer';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
-import Account from './pages/Account';
+import Account from './pages/Account.jsx';
 
 // Импортируем наши локальные данные
 import api from './api/axios';

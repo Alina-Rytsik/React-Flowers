@@ -28,3 +28,11 @@ class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
+
+class ProfileView(generics.RetrieveAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated] # Доступ только для авторизованных
+
+    def get_object(self):
+        # Этот метод говорит Django: "Вместо поиска ID в URL, просто отдай того, кто сейчас авторизован"
+        return self.request.user

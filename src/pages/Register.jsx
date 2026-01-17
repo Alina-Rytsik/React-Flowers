@@ -1,23 +1,30 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; 
 
 function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8000/api/register/', {
-        username,
-        email,
-        password,
+      await axios.post('http://127.0.0.1:8000/api/register/', {
+        username: username, // данные из стейтов инпутов
+        email: email,
+        password: password
       });
-      alert('User registered successfully');
-    } catch (error) {
-      console.error('There was an error registering the user!', error);
+      alert('Регистрация успешна! Теперь войдите.');
+      navigate('/login'); // перенаправляем на вход
+    } catch (err) {
+      // Проверяем, есть ли ответ от сервера с текстом ошибки
+      const errorMessage = err.response?.data 
+        ? JSON.stringify(err.response.data) 
+        : 'Произошла ошибка при регистрации';
+      alert("Ошибка регистрации: " + errorMessage);
     }
   };
 
