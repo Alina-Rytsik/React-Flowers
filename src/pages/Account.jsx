@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Finance from '../components/finance/Finance.jsx';
 import s from './account.scss';
 
 function Account() {
@@ -152,7 +153,11 @@ function Account() {
 
   return (
     <div className='Account-box'>
-      <h3>Личный кабинет</h3>
+      <div className='InfoCabinet'> 
+        <h3 className='Info-title'>Личный кабинет</h3>
+      <Finance />
+    </div>
+     
       <img src='/img/home/rose.png' alt='Roses'/>
 
       <div className='PersonalData'>
@@ -286,59 +291,20 @@ function Account() {
         </div>
 
         {showDeleteConfirm && (
-          <div className="modal-overlay" style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000
-          }}>
-            <div className="confirm-modal" style={{
-              background: 'white',
-              padding: '30px',
-              borderRadius: '8px',
-              textAlign: 'center',
-              maxWidth: '400px',
-              width: '90%'
-            }}>
-              <h3 style={{color: '#f44336', marginBottom: '15px'}}>Подтверждение удаления</h3>
+          <div className="modal-overlay">
+            <div className="confirm-modal">
+              <h3>Подтверждение удаления</h3>
               <p>Вы уверены, что хотите удалить аккаунт? Это действие нельзя отменить.</p>
-              <div className="modal-buttons" style={{
-                display: 'flex',
-                gap: '10px',
-                justifyContent: 'center',
-                marginTop: '20px'
-              }}>
+              <div className="modal-buttons">
                 <button 
                   className="confirm-delete-btn" 
                   onClick={confirmDelete}
-                  style={{
-                    background: '#f44336',
-                    color: 'white',
-                    border: 'none',
-                    padding: '10px 20px',
-                    borderRadius: '5px',
-                    cursor: 'pointer'
-                  }}
                 >
                   Удалить аккаунт
                 </button>
                 <button 
                   className="cancel-delete-btn" 
                   onClick={cancelDelete}
-                  style={{
-                    background: '#757575',
-                    color: 'white',
-                    border: 'none',
-                    padding: '10px 20px',
-                    borderRadius: '5px',
-                    cursor: 'pointer'
-                  }}
                 >
                   Отмена
                 </button>

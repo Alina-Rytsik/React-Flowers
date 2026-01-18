@@ -1,0 +1,131 @@
+.finance-section {
+  position: absolute;
+  width: 30%;
+  height: auto;
+  border: 1px solid #033017;
+  background-color: #B6BBAF;
+  border-radius: 30px;
+  padding: 20px 20px;
+  margin: 20px 0px 40px 40px;
+  bottom: 0;
+
+  h3 { 
+    color: #000000; 
+    font-size: 14px; 
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    margin: 10px 10px 20px 20px;
+  }
+
+  .finance-btn {
+    text-align: left;
+    cursor: pointer;
+    background: #f5f6f8;
+    padding: 15px 20px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    
+    img { 
+      width: 24px; 
+      margin-right: 15px; 
+    }
+    span { font-weight: 
+      500; color: #333; 
+    }
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  &.z-top { z-index: 1100; }
+}
+
+.modal-content {
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 25px;
+  padding: 25px;
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    h2 { 
+      font-size: 18px; 
+      margin: 0; 
+      letter-spacing: 0.2em;
+    }
+    button { border: none; background: none; font-size: 20px; cursor: pointer; color: #ccc; }
+  }
+}
+
+.card-item {
+  background: #B6BBAF;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+
+  .card-info {
+    display: flex;
+    flex-direction: column;
+    .brand { font-weight: bold; }
+    .status { font-size: 12px; color: #033017; }
+  }
+}
+
+.add-card-trigger {
+  background: #f5f6f8;
+  padding: 15px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  .plus-icon { color: #ccc; margin-right: 15px; font-size: 20px; }
+  .arrow { margin-left: auto; color: #ccc; }
+}
+
+.save-btn, .submit-btn {
+  width: 100%;
+  background: #033017;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 15px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.add-card-form {
+  .card-brands-icons {
+      img {
+      width: 40px;
+      height: auto;
+      padding: 2px 5px;
+      }
+      
+    }
+  input {
+    width: 95%;
+    padding: 10px 10px;
+    margin-bottom: 15px;
+    border: 2px solid #F2C1C1;
+    border-radius: 12px;
+    outline: none;
+    &:focus { border-color: #033017; }
+
+    
+  }
+  .input-row { display: flex; gap: 10px; }
+  .secure-info { text-align: center; color: #aaa; font-size: 12px; margin-top: 10px; }
+}

@@ -1,9 +1,9 @@
 from rest_framework import viewsets, generics, permissions
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
-from .models import User, Category, Product, Order
+from .models import User, Category, Product, Order, PaymentCard
 from .serializers import (
     UserSerializer, RegisterSerializer, ProductSerializer, 
-    CategorySerializer, OrderSerializer
+    CategorySerializer, OrderSerializer, CardSerializer
 )
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -36,3 +36,15 @@ class ProfileView(generics.RetrieveUpdateDestroyAPIView): # Разрешит GET
     def get_object(self):
         # Этот метод говорит Django: "Вместо поиска ID в URL, просто отдай того, кто сейчас авторизован"
         return self.request.user
+    
+class CardViewSet(viewsets.ModelViewSet):
+    serializer_class = CardSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return PaymentCard.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        # Логика: если это первая карта, делаем её основной
+        is_first = not PaymentCard.objects.filter(user=self.request.user).exists()
+        serializer.save(user=self.request.user, is_primary=is_first)

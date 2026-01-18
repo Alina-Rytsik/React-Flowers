@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Category, Product, Order, OrderItem
+from .models import User, Category, Product, Order, OrderItem, PaymentCard
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -49,3 +49,9 @@ class OrderSerializer(serializers.ModelSerializer):
         for item in products_data:
             OrderItem.objects.create(order=order, **item)
         return order
+    
+
+class CardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PaymentCard
+        fields = ['id', 'brand', 'last4', 'is_primary']

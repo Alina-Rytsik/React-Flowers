@@ -49,3 +49,14 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+
+#6. Модель карты
+class PaymentCard(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='cards')
+    brand = models.CharField(max_length=20) # Visa, Mastercard
+    last4 = models.CharField(max_length=4)
+    is_primary = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = "Платежная карта"
+        verbose_name_plural = "Платежные карты"
