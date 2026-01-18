@@ -8,7 +8,7 @@ from rest_framework.routers import DefaultRouter
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-from products.views import ProductViewSet, CategoryViewSet, OrderViewSet
+from products.views import ProductViewSet, CategoryViewSet, OrderViewSet, RegisterView, ProfileView
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -40,11 +40,15 @@ urlpatterns = [
     path('api/', include(router.urls)), 
     
     # Авторизация
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'), # Для обновления токена
+    path('api/register/', RegisterView.as_view(), name='register'),
+    path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'), # Это для логина
     
     # Документация
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    
+    # Твои товары (ProductViewSet и т.д.)
+    path('api/profile/', ProfileView.as_view(), name='profile'),
 ]
 
 # Важно для картинок! Чтобы React видел изображения из папки media

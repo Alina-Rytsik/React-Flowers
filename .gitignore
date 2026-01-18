@@ -21,3 +21,17 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#База данных игнорируемтзь ыефке
+
+backend/db.sqlite3
+
+# Виртуальное окружение Python
+backend/venv/
+backend/.venv/
+
+# Кэш Python
+**/__pycache__/
+
+# Папка с медиа-файлами (картинки товаров, которые ты загружаешь)
+backend/media/
