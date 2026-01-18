@@ -29,7 +29,7 @@ class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
 
-class ProfileView(generics.RetrieveAPIView):
+class ProfileView(generics.RetrieveUpdateDestroyAPIView): # Разрешит GET, PUT, PATCH и DELETE:
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated] # Доступ только для авторизованных
 

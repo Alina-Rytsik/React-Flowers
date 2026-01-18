@@ -1,7 +1,21 @@
-.Menu-AboutUs {
+.Account-box {
     display: flex;
     position: relative;
     align-items: center;
+
+    h2,
+    p { 
+        padding: 15px 40px 15px 40px;
+        margin: 0;
+      }
+      h2 {
+        padding: 20px 0px;
+        font-size: 20px;
+      }
+      p {
+        text-align: center;
+        font-size: 16px;
+      }
   
     img {
       width: 50%;
@@ -9,37 +23,162 @@
       margin-left: auto;
     }
 
-    .Block-AboutUs {
+    .PersonalData {
       position: absolute;
-      width: 50%;
+      width: 40%;
       height: auto;
       border: 3px solid #033017;
       border-radius: 30px;
-      margin-left: 10%;
+      margin-left: 55%;
       background: rgb(246 246 246 / 66%);
 
       div {
-        padding: 25px 0px;
+        padding: 5px 0px;
       }
-      h3,
-      p {
-        text-align: center;
-        padding: 15px 40px 15px 40px;
-        margin: 0;
+
+      .profile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 20px;
+
+        .avatar-section{
+          width: auto;
+
+          .avatar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 37px;
+            border-radius: 50%;
+            border: 2px solid #F2C1C1;
+            background: #ffff;
+            color: #033017;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 10px;
+          }
+        }
+        h3 {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0;
+            margin: 0;
+            color: #033017;
+            font-size: 20px;
+          } 
+        .gear-btn {
+            display: block;
+            width: 40px;
+            height: auto;
+            cursor: pointer;
+            margin: 10px 10px;
+          }
       }
-      h3 {
-        padding: 20px 0px;
-        font-size: 20px;
-      }
-      p {
-        font-size: 16px;
-      }
-      .lineUs {
+      
+      .lineAccount {
         width: 100%;
         height: 2px;
         background:#033017;
         margin: 0;
         padding: 0;
       }
+
+      .profile-content {
+
+        .form-section {
+
+          .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            
+            label {
+              width: 100px;
+              font-weight: bold;
+              color: #033017;
+              padding: 0px 10px;
+              margin: 0;
+              font-size: 16px;
+            }
+            input {
+              flex: 1;
+              padding: 8px 12px;
+              border: 1px solid #ddd;
+              border-radius: 4px;
+              font-size: 12px;
+            }
+            span {
+              display: flex;
+              justify-content: flex-start;
+              justify-items: center;
+              padding: 8px 12px;
+              background-color: white;
+              border-radius: 20px;
+              width: 60%;
+              height: 15px;
+              font-size: 16px;
+              font-weight: 500;
+            }
+          }
+
+          .action-buttons {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 10px;
+            margin: 0;
+          }
+          .save-btn,.cancel-btn {
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            border: 2px solid #fff;
+            cursor: pointer;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            font-size: 14px;
+          }
+          .save-btn {
+            background: #03fe03;
+          }
+          .cancel-btn {
+            background: #faa4a4;
+          }
+        }
+
+      }
+
+      .profile-footer {
+        display: flex;
+        justify-content: space-between;
+        border-top: 2px solid rgb(224, 224, 224);
+        margin-top: 15px;
+        padding: 20px 20px;
+
+        .exit-btn,
+        .delete-btn {
+          color: #F6F6F6;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 5px;
+          cursor: pointer;
+          background: #797979;
+          border: 2px solid #033017;
+          font-weight: 800;
+
+          &:hover {
+            background: #fbafaf;
+            border: 1px solid #ffffff;
+            text-shadow: 0.1em 0.1em 0.1em #faa4a4;
+          }
+        }
+
+      }
     }
+
+
   }

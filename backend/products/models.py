@@ -4,6 +4,8 @@ from django.contrib.auth.models import AbstractUser
 # 1. Пользователь
 class User(AbstractUser):
     is_admin = models.BooleanField(default=False)
+    phone = models.CharField(max_length=20, blank=True, null=True, verbose_name="Телефон")
+    gender = models.CharField(max_length=10, blank=True, null=True, verbose_name="Пол")
     class Meta:
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
