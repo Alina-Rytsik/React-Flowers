@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Finance from '../components/finance/Finance.jsx';
 import s from './account.scss';
+import ProfileMenu from '../components/ProfileMenu/ProfileMenu.jsx';
 
 function Account() {
   const [user, setUser] = useState(null);
@@ -152,166 +153,172 @@ function Account() {
   }
 
   return (
-    <div className='Account-box'>
-      <div className='InfoCabinet'> 
-        <h3 className='Info-title'>Личный кабинет</h3>
-      <Finance />
-    </div>
-     
-      <img src='/img/home/rose.png' alt='Roses'/>
-
-      <div className='PersonalData'>
-        <div className="profile-header">
-          <div className="avatar-section">
-            <div className="avatar">
-              {userData.firstName[0]}{userData.lastName[0]}
-            </div>
-          </div>
-
-          <h3>
-            {userData.firstName} {userData.lastName}
-          </h3>
-
-          {!isEditing && (
-              <img className="gear-btn"src='./img/gear.png' alt='gear'onClick={() => setIsEditing(true)} />
-          )}
+    <div>
+      <div className='Account-box'>
+        <div className='InfoCabinet'> 
+          <h3 className='Info-title'>Личный кабинет</h3>
+        <Finance />
         </div>
-        
-        <div className='lineAccount'></div>
-        
-        <div className="profile-content">
+      
+        <img src='/img/home/rose.png' alt='Roses'/>
 
-          <div className="form-section">
-            <div className="form-group">
-              <label>Имя:</label>
-              {isEditing ? (
-                <input
-                  type="text"
-                  name="firstName"
-                  value={userData.firstName}
-                  onChange={handleInputChange}
-                />
-              ) : (
-                <span>{userData.firstName}</span>
-              )}
-            </div>
-
-            <div className="form-group">
-              <label >Фамилия:</label>
-              {isEditing ? (
-                <input
-                  type="text"
-                  name="lastName"
-                  value={userData.lastName}
-                  onChange={handleInputChange}
-                />
-              ) : (
-                <span>{userData.lastName}</span>
-              )}
-            </div>
-
-            <div className="form-group">
-              <label>Email:</label>
-              {isEditing ? (
-                <input
-                  type="email"
-                  name="email"
-                  value={userData.email}
-                  onChange={handleInputChange}
-                />
-              ) : (
-                <span>{userData.email}</span>
-              )}
-            </div>
-
-            <div className="form-group">
-              <label>Телефон:</label>
-              {isEditing ? (
-                <input
-                  type="tel"
-                  name="phone"
-                  value={userData.phone}
-                  onChange={handleInputChange}
-                />
-              ) : (
-                <span>{userData.phone}</span>
-              )}
-            </div>
-
-            <div className="form-group">
-              <label>Пол:</label>
-              {isEditing ? (
-                <select
-                  name="gender"
-                  value={userData.gender}
-                  onChange={handleInputChange}
-                >
-                  <option value="male">Мужской</option>
-                  <option value="female">Женский</option>
-                </select>
-              ) : (
-                <span>
-                  {userData.gender === 'male' ? 'Мужской' : 'Женский'}
-                </span>
-              )}
-            </div>
-
-            {isEditing && (
-              <div className="action-buttons">
-                <button 
-                  className="save-btn" 
-                  onClick={handleSave}
-                >
-                  Сохранить
-                </button>
-                <button 
-                  className="cancel-btn" 
-                  onClick={handleCancel}
-                >
-                  Отмена
-                </button>
+        <div className='PersonalData'>
+          <div className="profile-header">
+            <div className="avatar-section">
+              <div className="avatar">
+                {userData.firstName[0]}{userData.lastName[0]}
               </div>
+            </div>
+
+            <h3>
+              {userData.firstName} {userData.lastName}
+            </h3>
+
+            {!isEditing && (
+                <img className="gear-btn"src='./img/gear.png' alt='gear'onClick={() => setIsEditing(true)} />
             )}
           </div>
-        </div>
+          
+          <div className='lineAccount'></div>
+          
+          <div className="profile-content">
 
-        <div className="profile-footer">
-          <button 
-            className="exit-btn" 
-            onClick={handleLogout}
-          >
-            Выйти из аккаунта
-          </button>
-          <button 
-            className="delete-btn" 
-            onClick={handleDeleteAccount}
-          >
-            Удалить аккаунт
-          </button>
-        </div>
-
-        {showDeleteConfirm && (
-          <div className="modal-overlay">
-            <div className="confirm-modal">
-              <h3>Подтверждение удаления</h3>
-              <p>Вы уверены, что хотите удалить аккаунт? Это действие нельзя отменить.</p>
-              <div className="modal-buttons">
-                <button 
-                  className="confirm-delete-btn" 
-                  onClick={confirmDelete}
-                >
-                  Удалить аккаунт
-                </button>
-                <button 
-                  className="cancel-delete-btn" 
-                  onClick={cancelDelete}
-                >
-                  Отмена
-                </button>
+            <div className="form-section">
+              <div className="form-group">
+                <label>Имя:</label>
+                {isEditing ? (
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={userData.firstName}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  <span>{userData.firstName}</span>
+                )}
               </div>
+
+              <div className="form-group">
+                <label >Фамилия:</label>
+                {isEditing ? (
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={userData.lastName}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  <span>{userData.lastName}</span>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label>Email:</label>
+                {isEditing ? (
+                  <input
+                    type="email"
+                    name="email"
+                    value={userData.email}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  <span>{userData.email}</span>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label>Телефон:</label>
+                {isEditing ? (
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={userData.phone}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  <span>{userData.phone}</span>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label>Пол:</label>
+                {isEditing ? (
+                  <select
+                    name="gender"
+                    value={userData.gender}
+                    onChange={handleInputChange}
+                  >
+                    <option value="male">Мужской</option>
+                    <option value="female">Женский</option>
+                  </select>
+                ) : (
+                  <span>
+                    {userData.gender === 'male' ? 'Мужской' : 'Женский'}
+                  </span>
+                )}
+              </div>
+
+              {isEditing && (
+                <div className="action-buttons">
+                  <button 
+                    className="save-btn" 
+                    onClick={handleSave}
+                  >
+                    Сохранить
+                  </button>
+                  <button 
+                    className="cancel-btn" 
+                    onClick={handleCancel}
+                  >
+                    Отмена
+                  </button>
+                </div>
+              )}
             </div>
           </div>
-        )}
+
+          <div className="profile-footer">
+            <button 
+              className="exit-btn" 
+              onClick={handleLogout}
+            >
+              Выйти из аккаунта
+            </button>
+            <button 
+              className="delete-btn" 
+              onClick={handleDeleteAccount}
+            >
+              Удалить аккаунт
+            </button>
+          </div>
+
+          {showDeleteConfirm && (
+            <div className="modal-overlay">
+              <div className="confirm-modal">
+                <h3>Подтверждение удаления</h3>
+                <p>Вы уверены, что хотите удалить аккаунт? Это действие нельзя отменить.</p>
+                <div className="modal-buttons">
+                  <button 
+                    className="confirm-delete-btn" 
+                    onClick={confirmDelete}
+                  >
+                    Удалить аккаунт
+                  </button>
+                  <button 
+                    className="cancel-delete-btn" 
+                    onClick={cancelDelete}
+                  >
+                    Отмена
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className='ProfileMenu-box'>
+        <ProfileMenu />
       </div>
     </div>
   );
