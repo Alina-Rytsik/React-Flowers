@@ -34,6 +34,7 @@ class Product(models.Model):
 
 # 4. Заказ (ссылается на Товар через ManyToMany)
 class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders', null=True, blank=True)
     customer_name = models.CharField(max_length=255, verbose_name="Имя клиента")
     customer_phone = models.CharField(max_length=20, verbose_name="Телефон клиента")
     total_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Общая стоимость")
@@ -60,3 +61,13 @@ class PaymentCard(models.Model):
     class Meta:
         verbose_name = "Платежная карта"
         verbose_name_plural = "Платежные карты"
+
+
+#7. Отметка в Избраное
+class Favorite(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='favorites')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='favorites')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'product')

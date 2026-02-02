@@ -12,13 +12,70 @@ const ProfileMenu = () => {
     }, [activeTab]);
 
     const fetchData = async () => {
+        // Создаем карту соответствия вкладок и реальных URL твоего API
+        const endpoints = {
+            orders: 'http://127.0.0.1:8000/api/orders/',
+            favorites: 'http://127.0.0.1:8000/api/favorites/',
+            reviews: 'http://127.0.0.1:8000/api/reviews/',    // Если создашь такой путь позже
+        };
+        const url = endpoints[activeTab];
+        // Если для этой вкладки нет URL (например, для 'bonuses'), очищаем данные и выходим
+        if (!url) {
+            setData([]);
+            return;
+        }
         try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/profile-data/${activeTab}/`, {
+            const res = await axios.get(url, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            setData(res.data);
-        } catch (err) { console.error(err); }
+            // Делаем проверку, чтобы всегда получать массив:
+            const resultData = Array.isArray(res.data) ? res.data : (res.data.results || []);
+            setData(resultData);
+        } catch (err) { 
+            console.error(`Ошибка при загрузке ${activeTab}:`, err);
+            setData([]); // В случае ошибки (например, 404) обнуляем список
+        }
     };
+
+    //Удаление из избранного
+    const handleRemoveFavorite = async (id) => {
+        try {
+            await axios.post(`http://127.0.0.1:8000/api/favorites/${id}/toggle/`, {}, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            // обновляем данные
+            fetchData();
+        } catch (err) {
+            console.error("Ошибка при удалении из избранного:", err);
+        }
+    };
+
+    //Оформление заказа из избранного
+    const handleCreateOrder = async (product) => {
+        try {
+            // Данные для создания заказа (OrderSerializer)
+            const orderData = {
+                customer_name: "Пользователь", // В идеале взять из данных профиля
+                customer_phone: "89990000000", 
+                total_price: product.price,
+                products: [
+                    { product: product.id, quantity: 1 }
+                ]
+            };
+
+            await axios.post('http://127.0.0.1:8000/api/orders/', orderData, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            alert(`Заказ на букет "${product.title}" успешно оформлен!`);
+            // Переключаем вкладку на "Мои заказы", чтобы пользователь увидел новый заказ
+            setActiveTab('orders');
+        } catch (err) {
+            console.error("Ошибка при создании заказа:", err);
+            alert("Ошибка! Проверьте, залогинены ли вы.");
+        }
+    };
+
 
     return (
         <div className="profile-container">
@@ -32,7 +89,13 @@ const ProfileMenu = () => {
             <div className="tab-content">
                 {activeTab === 'orders' && <OrdersTab orders={data} />}
                 {activeTab === 'bonuses' && <BonusesTab />}
-                {activeTab === 'favorites' && <FavoritesTab products={data} />}
+                {activeTab === 'favorites' && (
+                    <FavoritesTab 
+                        products={data} 
+                        onRemove={handleRemoveFavorite} 
+                        onOrder={handleCreateOrder} 
+                    />
+                )}
                 {activeTab === 'reviews' && <ReviewsTab reviews={data} />}
             </div>
         </div>
@@ -76,13 +139,19 @@ const ProfileMenu = () => {
       );
 
       // Вкладка ИЗБРАННОЕ
-      const FavoritesTab = ({ products }) => (
+      const FavoritesTab = ({ products, onRemove, onOrder }) => (
           <div className="products-grid">
               {products.map(p => (
                   <div key={p.id} className="product-card">
+                      <img onClick={() => onRemove(p.id)} 
+                        src='/img/cross-off.png'
+                        alt='Close' 
+                        className='product-Cross' 
+                      />
                       <img src={p.imageUrl} alt={p.title} />
+                      <h3>{p.title}</h3>
                       <p>{p.price} руб.</p>
-                      <button className="fav-btn">❤️</button>
+                      <button className="fav-btn" onClick={() => onOrder(p)}> Заказать </button>
                   </div>
               ))}
           </div>

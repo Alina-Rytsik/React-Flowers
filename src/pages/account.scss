@@ -22,6 +22,9 @@
 
     .PersonalData {
       position: absolute;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
       width: 40%;
       height: auto;
       border: 3px solid #033017;
@@ -30,6 +33,7 @@
       background: rgb(246 246 246 / 66%);
 
       div {
+        width: 100%;
         padding: 5px 0px;
       }
 
@@ -37,7 +41,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0px 20px;
+        width: 100%;
+        height: 15%;
 
         .avatar-section{
           width: auto;
@@ -89,6 +94,7 @@
 
           .form-group {
             display: flex;
+            width: 100%;
             align-items: center;
             margin-bottom: 15px;
             
@@ -155,7 +161,8 @@
 
       .profile-footer {
         display: flex;
-        justify-content: space-between;
+        width: 100%;
+        justify-content: space-evenly;
         border-top: 2px solid rgb(224, 224, 224);
         margin-top: 15px;
         padding: 20px 20px;

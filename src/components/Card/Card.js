@@ -1,18 +1,46 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
 import styles from './Card.module.scss';
+import axios from 'axios';
 
-function Card({ id, title, imageUrl, price, onPlus, cartItems = [], loading = false }) {
+function Card({
+  id,
+  title,
+  imageUrl,
+  price,
+  onPlus,
+  cartItems = [],
+  loading = false,
+  favorited = false,
+}) {
   // Проверяем, есть ли этот конкретный ID в корзине
   const isAdded = cartItems.some((obj) => Number(obj.id) === Number(id));
-  const [isFavorite, setIsFavorite] = React.useState(false);
+  const [isFavorite, setIsFavorite] = React.useState(favorited);
 
   const onClickPlus = () => {
     onPlus({ id, title, imageUrl, price });
   };
 
-  const onClickFavorite = () => {
-    setIsFavorite(!isFavorite);
+  const onClickFavorite = async () => {
+    try {
+      const token = localStorage.getItem('access_token');
+      if (!token) {
+        alert('Пожалуйста, войдите в аккаунт, чтобы сохранять избранное');
+        return;
+      }
+      // Отправляем запрос на наш новый эндпоинт
+      const res = await axios.post(
+        `http://127.0.0.1:8000/api/favorites/${id}/toggle/`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+      // Обновляем иконку только если запрос прошел успешно
+      setIsFavorite(res.data.is_favorite);
+    } catch (err) {
+      console.error('Ошибка при смене статуса избранного', err);
+    }
   };
 
   return (
