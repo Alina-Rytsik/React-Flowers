@@ -3,6 +3,7 @@ import axios from 'axios';
 import Finance from '../components/finance/Finance.jsx';
 import s from './account.scss';
 import ProfileMenu from '../components/ProfileMenu/ProfileMenu.jsx';
+import Call from '../components/Call/index.js';
 
 function Account() {
   const [user, setUser] = useState(null);
@@ -319,6 +320,7 @@ function Account() {
 
       <div className='ProfileMenu-box'>
         <ProfileMenu />
+        <Call />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Category, Product, Order, OrderItem, PaymentCard
+from .models import User, Category, Product, Order, OrderItem, PaymentCard, Favorite
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,9 +17,10 @@ class RegisterSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     title = serializers.CharField(source='name')
     imageUrl = serializers.SerializerMethodField()
+    is_favorite = serializers.SerializerMethodField()
     class Meta:
         model = Product
-        fields = ['id', 'title', 'price', 'imageUrl', 'category']
+        fields = ['id', 'title', 'price', 'imageUrl', 'category', 'is_favorite']
     def get_imageUrl(self, obj):
         if obj.image:
             request = self.context.get('request')
@@ -27,6 +28,13 @@ class ProductSerializer(serializers.ModelSerializer):
                 return request.build_absolute_uri(obj.image.url)
             return obj.image.url
         return None
+
+    
+    def get_is_favorite(self, obj):
+        request = self.context.get('request')
+        if request and request.user and request.user.is_authenticated:
+            return Favorite.objects.filter(user=request.user, product=obj).exists()
+        return False
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,10 +50,11 @@ class OrderSerializer(serializers.ModelSerializer):
     products = OrderItemSerializer(many=True)
     class Meta:
         model = Order
-        fields = ['id', 'customer_name', 'customer_phone', 'total_price', 'created_at', 'products']
+        fields = ['id','user', 'customer_name', 'customer_phone', 'total_price', 'created_at', 'products']
     def create(self, validated_data):
-        products_data = validated_data.pop('products')
+        products_data = validated_data.pop('products', [])
         order = Order.objects.create(**validated_data)
+
         for item in products_data:
             OrderItem.objects.create(order=order, **item)
         return order
