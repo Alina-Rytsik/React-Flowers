@@ -22,10 +22,8 @@ function Account() {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem('access_token'); 
-        if (!token) {
-          setError("Вы не авторизованы");
+        if (!token) 
           return;
-        }
 
         const response = await axios.get('http://127.0.0.1:8000/api/profile/', {
           headers: {
@@ -43,8 +41,8 @@ function Account() {
           gender: response.data.gender || 'male'
         });
       } catch (error) {
-        console.error('Failed to fetch user', error);
-        setError("Не удалось загрузить данные профиля");
+        console.warn('Backend is offline, showing login form');
+        setUser(null);
       }
     };
 
@@ -62,7 +60,7 @@ function Account() {
   const handleSave = async () => {
     try {
       const token = localStorage.getItem('access_token');
-      
+      setUser(null);
       if (!token) {
         alert('Сессия истекла. Войдите заново.');
         window.location.href = '/login';
