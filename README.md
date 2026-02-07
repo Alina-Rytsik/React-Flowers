@@ -1,70 +1,66 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🌸 Flowers Online Store (Fullstack Project)
 
-## Available Scripts
+A fully functional e-commerce website for a flower shop. Users can browse the catalog, use filters and add items to the cart. User registration and authorization, login to your personal account, where you can link your bank card, view "favorites," "discounts and bonuses," "reviews," and "orders." 
 
-In the project directory, you can run:
+[🔗 Live Demo]
+(temporarily unavailable...)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#📋 Project Overview
+This project was created to demonstrate my ability to build a complete web application from scratch, connecting a React frontend with a Python (Django REST Framework) backend.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Key Features:
+- **Product Catalog:** Browsing flowers with categories and pricing.
+- **Advanced Filtering:** Filter by type, or name.
+- **Shopping Cart:** Full cart logic (add, remove, update quantity).
+- **Favorites System:** Users can save flowers they like (connected to the backend).
+- **Responsive Layout:** Pixel-perfect design that works on all devices (Desktop, Tablet, Mobile).
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# 🛠 Tech Stack
+**Frontend:**
+- **React.js** (Hooks, Functional Components)
+- **JavaScript** (ES6+)
+- **SCSS / SASS** (using BEM methodology)
+- **React Router** (for SPA navigation)
+- **Axios** (for API communication)
 
-### `npm run build`
+**Backend:**
+- **Python**
+- **Django REST Framework** (API development)
+- **SQLite / PostgreSQL** (Database)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# 📸 Interface Preview
+(temporarily unavailable...)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+# ⚙️ How to Run Locally
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+##1. Clone the repository
+```bash
+git clone https://github.com/Alina-Rytsik/React-Flowers.git
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 2. Setup Backend
+code
+Bash
+cd backend
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 3. Setup Frontend
+code
+Bash
+npm install
+npm start
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+👩‍💻 About the Author
+Alina Rytsik
+Junior Frontend Developer with a focus on React and a solid understanding of Python/Django.
+LinkedIn: 
+Telegram: @AlinaRM7
