@@ -12,38 +12,41 @@ const ProfileMenu = () => {
     }, [activeTab]);
 
     const fetchData = async () => {
-        // Создаем карту соответствия вкладок и реальных URL твоего API
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+            console.warn("Токен отсутствует, вход не выполнен");
+            return;
+        }
+
         const endpoints = {
             orders: 'http://127.0.0.1:8000/api/orders/',
             favorites: 'http://127.0.0.1:8000/api/favorites/',
-            reviews: 'http://127.0.0.1:8000/api/reviews/',    // Если создашь такой путь позже
         };
         const url = endpoints[activeTab];
-        // Если для этой вкладки нет URL (например, для 'bonuses'), очищаем данные и выходим
-        if (!url) {
-            setData([]);
-            return;
-        }
+        if (!url) return;
+
         try {
             const res = await axios.get(url, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            // Делаем проверку, чтобы всегда получать массив:
             const resultData = Array.isArray(res.data) ? res.data : (res.data.results || []);
             setData(resultData);
         } catch (err) { 
             console.error(`Ошибка при загрузке ${activeTab}:`, err);
-            setData([]); // В случае ошибки (например, 404) обнуляем список
+            if (err.response?.status === 401) {
+                alert("Сессия истекла. Пожалуйста, войдите снова.");
+            }
         }
     };
 
     //Удаление из избранного
     const handleRemoveFavorite = async (id) => {
+        const token = localStorage.getItem('access_token');
         try {
             await axios.post(`http://127.0.0.1:8000/api/favorites/${id}/toggle/`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            // обновляем данные
+
             fetchData();
         } catch (err) {
             console.error("Ошибка при удалении из избранного:", err);
@@ -55,10 +58,10 @@ const ProfileMenu = () => {
         try {
             // Данные для создания заказа (OrderSerializer)
             const orderData = {
-                customer_name: "Пользователь", // В идеале взять из данных профиля
+                customer_name: "Пользователь",
                 customer_phone: "89990000000", 
                 total_price: product.price,
-                products: [
+                 items: [
                     { product: product.id, quantity: 1 }
                 ]
             };
@@ -68,7 +71,6 @@ const ProfileMenu = () => {
             });
 
             alert(`Заказ на букет "${product.title}" успешно оформлен!`);
-            // Переключаем вкладку на "Мои заказы", чтобы пользователь увидел новый заказ
             setActiveTab('orders');
         } catch (err) {
             console.error("Ошибка при создании заказа:", err);
@@ -102,22 +104,44 @@ const ProfileMenu = () => {
         );
 };
 
+
       // Вкладка ЗАКАЗЫ
       const OrdersTab = ({ orders }) => (
-          <div className="orders-list">
-              {orders.map(order => (
-                  <div key={order.id} className="order-card">
-                      <div className="order-header">
-                          <span>ЗАКАЗ № {order.id}</span>
-                          <span className={`status ${order.status}`}>{order.status_display}</span>
-                          <span>{order.total_price} руб.</span>
-                          <button className="repeat-btn">Повторить заказ</button>
-                      </div>
-                      {/* Список товаров внутри заказа */}
-                  </div>
-              ))}
-          </div>
-      );
+        <div className="orders-list">
+            {orders.map((order) => (
+            <div key={order.id} className="order-card">
+                
+                <div className="order-image-box">
+                    {order.items && order.items[0] && (
+                        <img 
+                            src={order.items[0].product_image} 
+                            alt={order.items[0].product_name} 
+                            style={{ width: '100%', height: 'auto', borderRadius: '10px' }} 
+                        />
+                    )}
+                </div>
+
+                <div className="order-main-info">
+                    <div className="_info-1"> ЗАКАЗ № {order.id} </div>
+                    <div className="_info-2">
+                        {order.items && order.items[0] ? order.items[0].product_name : 'Букет'}
+                        {order.items?.length > 1 ? ` и еще ${order.items.length - 1} шт.` : ''}
+                    </div>
+                </div>
+
+                <div className="order-details">
+                    <div className="_details-1"> {order.total_price} руб. </div>
+                    <div className="_details-2">
+                        {new Date(order.created_at).toLocaleDateString()}
+                    </div>
+                </div>
+
+                <button className="repeat-btn">Повторить заказ</button>
+            </div>
+            ))}
+        </div>
+        );
+
 
       // Вкладка БОНУСЫ
       const BonusesTab = () => (
