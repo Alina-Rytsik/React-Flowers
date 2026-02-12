@@ -7,12 +7,18 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email', 'first_name', 'last_name', 'phone', 'gender', 'is_admin')
 
 class RegisterSerializer(serializers.ModelSerializer):
+    username = serializers.ReadOnlyField(source='user.first_name')
+    user_avatar = serializers.SerializerMethodField()  # Если есть аватар у юзера
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'password')
+        fields = ('id', 'username', 'user_avatar' 'email', 'password', 'rating', 'text', 'created_at')
         extra_kwargs = {'password': {'write_only': True}}
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
+    
+    def get_user_avatar(self, obj):
+        # Пример заглушки, если в модели User нет аватара
+        return "/img/avatar-placeholder.png"
 
 class ProductSerializer(serializers.ModelSerializer):
     title = serializers.CharField(source='name')

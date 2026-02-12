@@ -71,3 +71,14 @@ class Favorite(models.Model):
 
     class Meta:
         unique_together = ('user', 'product')
+
+
+#8. Мои Отзывы
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveSmallIntegerField(default=5) # от 1 до 5
+    text = models.TextField(verbose_name="Текст отзыва")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at'] # Свежие сверху

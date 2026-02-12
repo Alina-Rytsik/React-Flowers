@@ -117,7 +117,7 @@ function App() {
           <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />
         )}
 
-        <Header onClickCart={() => setCartOpened(true)} />
+        <Header items={cartItems} onClickCart={() => setCartOpened(true)} />
         <Menu />
 
         <Routes>
