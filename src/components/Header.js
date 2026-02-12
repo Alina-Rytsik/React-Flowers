@@ -3,6 +3,7 @@ import React from 'react';
 
 function Header(props) {
   const isAuth = !!localStorage.getItem('access_token');
+  const totalPrice = (props.items || []).reduce((sum, item) => sum + Number(item.price), 0);
 
   const handleLogout = () => {
     localStorage.removeItem('access_token');
@@ -25,7 +26,7 @@ function Header(props) {
       <ul className='headerRight'>
         <li onClick={props.onClickCart}>
           <img className='basket' width={30} height={30} src='img/cart.png' alt='Корзина' />
-          <span>1205 руб.</span>
+          <span>{totalPrice.toFixed(2)} руб.</span>
         </li>
         <li>
           <Link to='/login'>

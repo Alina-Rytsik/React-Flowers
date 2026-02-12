@@ -6,6 +6,7 @@ const ProfileMenu = () => {
     const [activeTab, setActiveTab] = useState('orders');
     const [data, setData] = useState([]);
     const token = localStorage.getItem('access_token');
+    
 
     useEffect(() => {
         fetchData();
@@ -182,17 +183,46 @@ const ProfileMenu = () => {
       );
 
       // Вкладка ОТЗЫВЫ
-      const ReviewsTab = ({ reviews }) => (
-      <div className="reviews-list">
-          {reviews.map(r => (
-              <div key={r.id} className="review-item">
-                  <h4>Букет: {r.product_name}</h4>
-                  <div className="stars">{'★'.repeat(r.rating)}</div>
-                  <p>{r.text}</p>
-                  <small>{new Date(r.created_at).toLocaleDateString()}</small>
-              </div>
-          ))}
-      </div>
-      );
+    const ReviewsTab = ({ reviews, onAdd, onDelete }) => {
+    const [newReview, setNewReview] = useState({ text: '', rating: 5 });
+    const [hoverRating, setHoverRating] = useState(0);
+    
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!newReview.text.trim()) return;
+        onAdd(newReview);
+        setNewReview({ text: '', rating: 5 }); // Очистка
+    };
+
+
+    return (
+        <div className="reviews-section">
+            {/* Форма добавления отзыва */}
+            <form className="review-form" onSubmit={handleSubmit}>
+                <h4>Оставить отзыв</h4>
+                <div className="star-picker">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                        <span 
+                            key={star}
+                            className={`star ${ (hoverRating || newReview.rating) >= star ? 'filled' : ''}`}
+                            onClick={() => setNewReview({...newReview, rating: star})}
+                            onMouseEnter={() => setHoverRating(star)}
+                            onMouseLeave={() => setHoverRating(0)}
+                        >
+                            ★
+                        </span>
+                    ))}
+                </div>
+                <textarea 
+                    placeholder="Поделитесь вашими впечатлениями..."
+                    value={newReview.text}
+                    onChange={(e) => setNewReview({...newReview, text: e.target.value})}
+                />
+                <button type="submit" className="send-btn">Опубликовать</button>
+            </form>
+        </div>
+    );
+};
 
 export default ProfileMenu;

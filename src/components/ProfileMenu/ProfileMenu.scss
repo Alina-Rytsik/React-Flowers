@@ -97,8 +97,8 @@
           }
           .fav-btn {
             width: 100%;
-            background: #faa4a4;
             border: 0;
+            background: lighten(#F2C1C1, 5%);
             border-radius: 20px;
             text-align: center;
             color: #ffffff;
@@ -107,9 +107,71 @@
             font-weight: 600;
             cursor: pointer;
             transition: background 0.2s ease-in-out;
+            &:hover {
+            background: #F2C1C1;
+            text-shadow: 0.1em 0.1em 0.1em #faa4a4;
+          }
+            &:active {
+              background: lighten(#F2C1C1, 5%);
+            }
           }
         }
       }
+
+     
+      .reviews-section {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 20px;
+
+      .review-form {
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 20px;
+        textarea {
+          width: 95%;
+          height: 100px;
+          margin: 0;
+          padding: 0;
+          border-radius: 10px;
+          padding: 20px;
+          border: 1px solid #ddd;
+          background-color: #B6BBAF;
+        }
+        .star-picker {
+          font-size: 24px;
+          cursor: pointer;
+          .star { 
+            color: #ccc; 
+            &.filled { 
+              color: #2d4a3e; 
+            } 
+          }
+        }
+        .send-btn {
+          width: 25%;
+          background: lighten(#F2C1C1, 5%);
+          border: 1px solid #ffffff;
+          text-shadow: 0.1em 0.1em 0.1em #faa4a4;
+          border-radius: 20px;
+          text-align: center;
+          color: #ffffff;
+          padding: 7px;
+          font-size: 16px;
+          font-weight: 600;
+          cursor: pointer;
+          
+          &:hover {
+            background: #F2C1C1;
+            text-shadow: 0.1em 0.1em 0.1em #faa4a4;
+          }
+          &:active {
+            background: lighten(#F2C1C1, 5%);
+          }
+        } 
+      }
+    }
   }
 
   .orders-list {
@@ -157,7 +219,7 @@
       
       .repeat-btn {
         width: 15%;
-        background: #faa4a4;
+        background: lighten(#F2C1C1, 5%);
         border: 0;
         border-radius: 20px;
         text-align: center;
@@ -167,8 +229,14 @@
         font-weight: 600;
         cursor: pointer;
         transition: background 0.2s ease-in-out;
-
-      }
+          &:hover {
+            background: #F2C1C1;
+            text-shadow: 0.1em 0.1em 0.1em #faa4a4;
+          }
+          &:active {
+            background: lighten(#F2C1C1, 5%);
+          }
+        }
     }
   }
 }
