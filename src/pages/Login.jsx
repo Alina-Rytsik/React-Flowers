@@ -1,4 +1,4 @@
-import React, { useState,useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
@@ -20,10 +20,8 @@ function Login() {
         username,
         password,
       });
-
       const token = response.data.access;
 
-      // Сохраняем токены
       localStorage.setItem('access_token', response.data.access);
       localStorage.setItem('refresh_token', response.data.refresh);
       // Сразу вызываем функцию загрузки профиля, чтобы Хедер и Личный кабинет получили данные юзера
