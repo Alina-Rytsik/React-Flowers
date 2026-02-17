@@ -129,6 +129,7 @@
         background: #f9f9f9;
         padding: 20px;
         border-radius: 20px;
+        border: 1px solid #F2C1C1;
         textarea {
           width: 95%;
           height: 100px;
@@ -139,9 +140,18 @@
           border: 1px solid #ddd;
           background-color: #B6BBAF;
         }
+        h4 {
+          display: block;
+          width: 100%;
+          text-align: left;
+          padding: 0;
+          font-size: 18px;
+          margin: 10px 0px 10px 0px;
+        }
         .star-picker {
           font-size: 24px;
           cursor: pointer;
+          margin-bottom: 10px;
           .star { 
             color: #ccc; 
             &.filled { 
@@ -161,6 +171,7 @@
           font-size: 16px;
           font-weight: 600;
           cursor: pointer;
+          margin-top: 10px;
           
           &:hover {
             background: #F2C1C1;
