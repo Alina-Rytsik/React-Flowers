@@ -42,7 +42,7 @@ This project was created to demonstrate my ability to build a complete web appli
 ```bash
 git clone https://github.com/Alina-Rytsik/React-Flowers.git
 
-## 2. Setup Backend
+##2. Setup Backend
 code
 Bash
 cd backend
@@ -52,7 +52,7 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 
-## 3. Setup Frontend
+##3. Setup Frontend
 code
 Bash
 npm install
@@ -62,5 +62,5 @@ npm start
 👩‍💻 About the Author
 Alina Rytsik
 Junior Frontend Developer with a focus on React and a solid understanding of Python/Django.
-LinkedIn: 
+LinkedIn: https://www.linkedin.com/in/alina-rytsik-0a4295257/
 Telegram: @AlinaRM7
