@@ -36,19 +36,20 @@ This project was created to demonstrate my ability to build a complete web appli
 
 ### Главная страница
 <p align="center">
-  <img src="assets/home_page.png" width="800" alt="Main Page Mockup">
+  <img src="assets/home_page.png" width="50%" alt="Main Page Mockup">
 </p>
 
-### Личный кабинет и корзина
+### Каталог и корзина
 <p align="center">
-  <img src="assets/profile-orders-bonuses-favorites-r.png" width="45%" alt="Profile and Orders">
+  <img src="assets/catalog.png" width="45%" alt="Catalog">
   <img src="assets/cart-states.png" width="45%" alt="Cart States">
 </p>
 
-### Авторизация и оплата
+### Авторизация/Вход. Личный кабинет и подвязка карты
 <p align="center">
   <img src="assets/login-registration.png" width="45%" alt="Auth">
-  <img src="assets/profile-bank-card.png" width="45%" alt="Payment">
+  <img src="assets/profile-orders-bonuses-favorites-reviews.png" width="45%" alt="Profile">
+  <img src="assets/profile-bank_card.png" width="45%" alt="Payment">
 </p>
 
 # ⚙️ How to Run Locally
