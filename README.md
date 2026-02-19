@@ -36,8 +36,8 @@ This project was created to demonstrate my ability to build a complete web appli
 
 ### Главная страница и Вход/Регистрация. 
 <p align="center">
-  <img src="assets/home_page.png" width="60%" alt="Main Page Mockup">
-  <img src="assets/login-registration.png" width="40%" alt="Auth">
+  <img src="assets/home_page.png" width="45%" alt="Main Page Mockup">
+  <img src="assets/login-registration.png" width="45%" alt="Auth">
 </p>
 
 ### Каталог и корзина
