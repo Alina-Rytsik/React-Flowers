@@ -32,9 +32,24 @@ This project was created to demonstrate my ability to build a complete web appli
 - **SQLite / PostgreSQL** (Database)
 
 
-# 📸 Interface Preview
-(temporarily unavailable...)
+## 📸 Скриншоты проекта
 
+### Главная страница
+<p align="center">
+  <img src="assets/home_page.png" width="800" alt="Main Page Mockup">
+</p>
+
+### Личный кабинет и корзина
+<p align="center">
+  <img src="assets/profile-orders-bonuses-favorites-r.png" width="45%" alt="Profile and Orders">
+  <img src="assets/cart-states.png" width="45%" alt="Cart States">
+</p>
+
+### Авторизация и оплата
+<p align="center">
+  <img src="assets/login-registration.png" width="45%" alt="Auth">
+  <img src="assets/profile-bank-card.png" width="45%" alt="Payment">
+</p>
 
 # ⚙️ How to Run Locally
 
