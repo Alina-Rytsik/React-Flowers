@@ -34,9 +34,10 @@ This project was created to demonstrate my ability to build a complete web appli
 
 ## 📸 Скриншоты проекта
 
-### Главная страница
+### Главная страница и Вход/Регистрация. 
 <p align="center">
-  <img src="assets/home_page.png" width="50%" alt="Main Page Mockup">
+  <img src="assets/home_page.png" width="60%" alt="Main Page Mockup">
+  <img src="assets/login-registration.png" width="40%" alt="Auth">
 </p>
 
 ### Каталог и корзина
@@ -45,9 +46,8 @@ This project was created to demonstrate my ability to build a complete web appli
   <img src="assets/cart-states.png" width="45%" alt="Cart States">
 </p>
 
-### Авторизация/Вход. Личный кабинет и подвязка карты
+### Личный кабинет и подвязка карты
 <p align="center">
-  <img src="assets/login-registration.png" width="45%" alt="Auth">
   <img src="assets/profile-orders-bonuses-favorites-reviews.png" width="45%" alt="Profile">
   <img src="assets/profile-bank_card.png" width="45%" alt="Payment">
 </p>
