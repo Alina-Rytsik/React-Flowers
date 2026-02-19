@@ -48,8 +48,8 @@ This project was created to demonstrate my ability to build a complete web appli
 
 ### Личный кабинет и подвязка карты
 <p align="center">
-  <img src="assets/profile-orders-bonuses-favorites-reviews.png" width="45%" alt="Profile">
-  <img src="assets/profile-bank_card.png" width="45%" alt="Payment">
+  <img src="assets/profile-orders-bonuses-favorites-reviews.png" width="60%" alt="Profile">
+  <img src="assets/profile-bank_card.png" width="30%" alt="Payment">
 </p>
 
 # ⚙️ How to Run Locally
