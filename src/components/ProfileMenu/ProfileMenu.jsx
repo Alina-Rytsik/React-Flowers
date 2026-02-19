@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import './ProfileMenu.scss';
 
@@ -8,11 +8,7 @@ const ProfileMenu = () => {
     const token = localStorage.getItem('access_token');
     
 
-    useEffect(() => {
-        fetchData();
-    }, [activeTab]);
-
-    const fetchData = async () => {
+    const fetchData = useCallback(async () => {
         const token = localStorage.getItem('access_token');
         if (!token) {
             console.warn("Токен отсутствует, вход не выполнен");
@@ -38,7 +34,12 @@ const ProfileMenu = () => {
                 alert("Сессия истекла. Пожалуйста, войдите снова.");
             }
         }
-    };
+    }, [activeTab]); // Функция пересоздастся только если изменится вкладка
+
+    // 3. Теперь в useEffect мы передаем fetchData как зависимость
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]); 
 
     //Удаление из избранного
     const handleRemoveFavorite = async (id) => {
