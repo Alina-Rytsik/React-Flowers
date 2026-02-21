@@ -1,13 +1,13 @@
 
-🌸 Flowers Online Store (Fullstack Project)
+# 🌸 Flowers Online Store (Fullstack Project)
 
-A fully functional e-commerce website for a flower shop. Users can browse the catalog, use filters and add items to the cart. User registration and authorization, login to your personal account, where you can link your bank card, view "favorites," "discounts and bonuses," "reviews," and "orders." 
+## A fully functional e-commerce website for a flower shop. Users can browse the catalog, use filters and add items to the cart. User registration and authorization, login to your personal account, where you can link your bank card, view "favorites," "discounts and bonuses," "reviews," and "orders." 
 
-[🔗 Live Demo]
+# [🔗 Live Demo]
 (temporarily unavailable...)
 
 
-#📋 Project Overview
+# 📋 Project Overview
 This project was created to demonstrate my ability to build a complete web application from scratch, connecting a React frontend with a Python (Django REST Framework) backend.
 
 ## Key Features:
@@ -54,11 +54,11 @@ This project was created to demonstrate my ability to build a complete web appli
 
 # ⚙️ How to Run Locally
 
-##1. Clone the repository
+##1.Clone the repository
 ```bash
 git clone https://github.com/Alina-Rytsik/React-Flowers.git
 
-##2. Setup Backend
+##2.Setup Backend
 code
 Bash
 cd backend
@@ -68,14 +68,14 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 
-##3. Setup Frontend
+##3.Setup Frontend
 code
 Bash
 npm install
 npm start
 
 
-👩‍💻 About the Author
+# 👩‍💻 About the Author
 Alina Rytsik
 Junior Frontend Developer with a focus on React and a solid understanding of Python/Django.
 LinkedIn: https://www.linkedin.com/in/alina-rytsik-0a4295257/
