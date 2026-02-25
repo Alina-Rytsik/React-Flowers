@@ -10,6 +10,7 @@ import Drawer from './components/Drawer';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import Account from './pages/Account.jsx';
+import Copyright from './copyright.js';
 
 // Импортируем наши локальные данные
 import api from './api/axios';
@@ -59,7 +60,7 @@ function App() {
     // Имитация загрузки (скелетон)
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000); // 1 секунда для красоты
+    }, 5000); // 1 секунда для красоты
 
     return () => clearTimeout(timer);
   }, []);
@@ -173,6 +174,8 @@ function App() {
         </Routes>
 
         <Footer />
+
+        <Copyright />
       </div>
     </AppContext.Provider>
   );

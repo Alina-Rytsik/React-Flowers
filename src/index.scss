@@ -710,3 +710,18 @@ header {
     }
   }
 }
+
+//copyright ©
+.copyright { 
+    ._line {
+      width: 100%;
+      height: 1px;
+      background-color: #b4b0b0;
+    }
+    h3 {
+      font-size: 10px;
+      color:#797979;
+      text-align: center;
+      height: 20px;
+    }
+}
