@@ -55,7 +55,7 @@ This project was created to demonstrate my ability to build a complete web appli
 # ⚙️ How to Run Locally
 
 ##1.Clone the repository
-```bash
+bash
 git clone https://github.com/Alina-Rytsik/React-Flowers.git
 
 ##2.Setup Backend
@@ -78,5 +78,5 @@ npm start
 # 👩‍💻 About the Author
 Alina Rytsik
 Junior Frontend Developer with a focus on React and a solid understanding of Python/Django.
-LinkedIn: https://www.linkedin.com/in/alina-rytsik-0a4295257/
+LinkedIn: https://www.linkedin.com/in/alina-rytsik/
 Telegram: @AlinaRM7
