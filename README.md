@@ -54,11 +54,11 @@ This project was created to demonstrate my ability to build a complete web appli
 
 # ⚙️ How to Run Locally
 
-##1.Clone the repository
+- **Clone the repository**
 bash
 git clone https://github.com/Alina-Rytsik/React-Flowers.git
 
-##2.Setup Backend
+- **Setup Backend**
 code
 Bash
 cd backend
@@ -68,7 +68,7 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 
-##3.Setup Frontend
+- **Setup Frontend**
 code
 Bash
 npm install
