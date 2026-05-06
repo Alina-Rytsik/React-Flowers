@@ -76,7 +76,7 @@ npm start
 
 
 # 👩‍💻 About the Author
-**Alina Rytsik**
-Junior Frontend Developer with a focus on React and a solid understanding of Python/Django.
-**LinkedIn:** https://www.linkedin.com/in/alina-rytsik/
-**Telegram:** @AlinaRM7
+- **Alina Rytsik**
+- **Junior Frontend Developer** with a focus on React and a solid understanding of Python/Django.
+- **LinkedIn:** https://www.linkedin.com/in/alina-rytsik/
+- **Telegram:** @AlinaRM7
