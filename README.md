@@ -4,7 +4,7 @@
 A fully functional e-commerce website for a flower shop. Users can browse the catalog, use filters and add items to the cart. User registration and authorization, login to your personal account, where you can link your bank card, view "favorites," "discounts and bonuses," "reviews," and "orders." 
 
 # [🔗 Live Demo]
-(temporarily unavailable...)
+[temporarily unavailable...]
 
 
 # 📋 Project Overview
